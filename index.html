@@ -1,0 +1,458 @@
+<html>
+
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<style>
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 18px;
+}
+
+i {
+  padding-left:4px;
+  padding-right:4px;
+}
+
+.speciesEntry, .planting {
+  padding-top:10px
+}
+
+/* Style the tab */
+.tab {
+  overflow: hidden;
+  border: 1px solid #ccc;
+  background-color: #f1f1f1;
+}
+
+/* Style the buttons that are used to open the tab content */
+.tab button {
+  background-color: inherit;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+  background-color: #ddd;
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+  background-color: #ccc;
+}
+
+/* Style the tab content */
+.tabcontent {
+  display: none;
+  padding: 6px 12px;
+  border: 1px solid #ccc;
+  border-top: none;
+}
+
+.tabcontent {
+  animation: fadeEffect 1s; /* Fading effect takes 1 second */
+}
+
+/* Go from zero to full opacity */
+@keyframes fadeEffect {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}
+
+.plantings {
+  padding-left:35px;
+}
+
+.source {
+  padding-left:3px;
+ }
+ 
+.planted, .location {
+	padding-left:24px;
+}
+
+.button, .itemButton {
+  align-items: center;
+  appearance: none;
+  background-color: #fff;
+  border-radius: 12px;
+  border-style: none;
+  box-shadow: rgba(0, 0, 0, .2) 0 3px 5px -1px,rgba(0, 0, 0, .14) 0 6px 10px 0,rgba(0, 0, 0, .12) 0 1px 18px 0;
+  box-sizing: border-box;
+  color: #3c4043;
+  cursor: pointer;
+  display: inline-flex;
+  fill: currentcolor;
+  font-family: "Google Sans",Roboto,Arial,sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  height: 25px;
+  justify-content: center;
+  letter-spacing: .25px;
+  line-height: normal;
+  max-width: 100%;
+  overflow: visible;
+  padding: 2px 24px;
+  position: relative;
+  text-align: center;
+  text-transform: none;
+  transition: box-shadow 280ms cubic-bezier(.4, 0, .2, 1),opacity 15ms linear 30ms,transform 270ms cubic-bezier(0, 0, .2, 1) 0ms;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  width: auto;
+  will-change: transform,opacity;
+  z-index: 0;
+}
+
+.button:hover, .itemButton:hover {
+  background: #F6F9FE;
+  color: #174ea6;
+}
+
+.button:active, .itemButton:active {
+  box-shadow: 0 4px 4px 0 rgb(60 64 67 / 30%), 0 8px 12px 6px rgb(60 64 67 / 15%);
+  outline: none;
+}
+
+.button:focus, .itemButton:focus {
+  outline: none;
+  border: 2px solid #4285f4;
+}
+
+.button:not(:disabled), .itemButton:not(:disabled) {
+  box-shadow: rgba(60, 64, 67, .3) 0 1px 3px 0, rgba(60, 64, 67, .15) 0 4px 8px 3px;
+}
+
+.button:not(:disabled):hover, .itemButton:not(:disabled):hover {
+  box-shadow: rgba(60, 64, 67, .3) 0 2px 3px 0, rgba(60, 64, 67, .15) 0 6px 10px 4px;
+}
+
+.button:not(:disabled):focus, .itemButton:not(:disabled):focus {
+  box-shadow: rgba(60, 64, 67, .3) 0 1px 3px 0, rgba(60, 64, 67, .15) 0 4px 8px 3px;
+}
+
+.button:not(:disabled):active, .itemButton:not(:disabled):active {
+  box-shadow: rgba(60, 64, 67, .3) 0 4px 4px 0, rgba(60, 64, 67, .15) 0 8px 12px 6px;
+}
+
+.button:disabled, .itemButton:disabled {
+  box-shadow: rgba(60, 64, 67, .3) 0 1px 3px 0, rgba(60, 64, 67, .15) 0 4px 8px 3px;
+}
+
+.itemButton {
+  padding-left:20px !important;
+}
+
+  /* Basic styling for the modal */
+  dialog {
+    padding: 20px;
+    border-radius: 8px;
+    border: none;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    width: 300px;
+  }
+
+  /* Styles the dimmed background */
+  dialog::backdrop {
+    background: rgba(0, 0, 0, 0.5);
+  }
+  
+#dialogEditSpecies, .dialogEditPlanting {
+  //position: absolute;
+  //top: 50%;
+  //left: 50%;
+  //transform: translate(-50%, -50%); /* Offsets the div by half its own size */
+
+}
+
+</style>
+
+<script src="garden data.js" type="text/javascript"></script>
+
+<script>
+
+let speciesToEditIndex, plantingToEditIndex, openElement
+
+function openTab(evt, tabName) {
+
+  // Declare all variables
+  var i, tabcontent, tablinks;
+
+  //Get all elements with class="tabcontent" and hide them
+  tabcontent = document.getElementsByClassName("tabcontent");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+
+  // Get all elements with class="tablinks" and remove the class "active"
+  tablinks = document.getElementsByClassName("tablinks");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" active", "");
+  }
+
+  // Show the current tab, and add an "active" class to the button that opened the tab
+  document.getElementById(tabName).style.display = "block";
+  evt.currentTarget.className += " active";
+  
+  //add the content to the tab's div
+  switch(tabName) {
+  case "List":
+    populateList()
+    break;
+  case "Map":
+    drawMap()
+    break;
+  default:
+    // code block
+  }
+}
+ 
+function populateList() {
+  let content = '<p><button class="button" type="button" onclick="showDialogAddNewSpecies()">Add new species or variety</button>&nbsp;&nbsp;&nbsp;<button class="button" type="button" onClick="downloadGardenData()">Save List</button><p>'
+  gardenData = gardenData.sort((a, b) => a.name.localeCompare(b.name));
+  for (let s = 0; s<gardenData.length; s++) {
+	content = content + '<div class="speciesEntry"><div class="name"><i class="fa fa-plus-square" style="font-size:14px; color:DimGray" onClick = "openRecord(this)" ></i><i class="fa fa-pencil-square-o" style="font-size:14px; color:DimGray" onClick = "showDialogEditName(' + s + ')" ></i>' + gardenData[s].name.replaceAll('"', "'") + '</div>'
+	let plantings = gardenData[s].plantings
+	content=content+'<div class="plantings" style="display:none">'
+	for (let p=0; p<plantings.length; p++) {
+		content=content+'<div class="planting"><i class="fa fa-pencil-square-o" style="font-size:14px; color:DimGray;" onClick = "editPlanting(' + s + ',' + p + ')" ></i>'
+		switch(plantings[p].source) {
+			case "Original":
+				content = content + '<div class="source" style="display:inline">Source: original</div>'
+				break;
+			case "Transplant":
+				content = content + '<div class="source" style="display:inline">Source: transplant</div>'
+				break;
+			case "":
+				content = content + '<div class="source" style="display:inline">Source: unknown</div>'
+				break;
+			default:
+				content = content + '<div class="source" style="display:inline">Source: ' + plantings[p].source + '</div>'
+		}
+		if (plantings[p].date_planted) {
+			content = content + '<div class="planted" style="display:block">Planted: ' + plantings[p].date_planted + '</div>'
+		}
+		if (plantings[p].baseline) {
+			content = content + '<div class="location" style="display:block">Location: baseline=' + plantings[p].baseline + '; x=' + plantings[p].x + '; y=' + plantings[p].y + '</div>'
+		}
+		content = content + '</div>'
+	}
+	content = content + '<p><button class="button" type="button" onclick="addNewPlanting(' + s + ')">Add new planting</button></div></div>'
+  }
+  
+  document.getElementById("List").innerHTML = content
+}
+
+function showDialogAddNewSpecies() {
+  dialogAddNewSpecies.showModal()
+}
+
+function showDialogEditName(s) {
+  document.getElementById("editSpeciesName").value = gardenData[s].name
+  dialogEditSpecies.showModal()
+  speciesToEditIndex = s
+}
+
+function editName() {
+  let newName = document.getElementById("editSpeciesName").value  
+  gardenData[speciesToEditIndex].name = newName
+  populateList()
+  dialogEditSpecies.close()
+}
+
+function addNewPlanting(s) {
+  console.log("Add new planting")
+}
+
+function editPlanting(s,p) {
+  speciesToEditIndex = s
+  plantingToEditIndex = p
+  document.getElementById("editPlantingSpeciesName").innerHTML = gardenData[s].name
+  document.getElementById("editPlantingSource").value = gardenData[s].plantings[p].source
+  document.getElementById("editPlantingDatePlanted").value = gardenData[s].plantings[p].date_planted
+  if (gardenData[s].plantings[p].baseline) {document.getElementById("editPlantingBaseline").value = gardenData[s].plantings[p].baseline} else {document.getElementById("editPlantingBaseline").value=""}
+  if (gardenData[s].plantings[p].x) {document.getElementById("editPlantingX").value = gardenData[s].plantings[p].x} else {document.getElementById("editPlantingX").value=""}
+  if (gardenData[s].plantings[p].y) {document.getElementById("editPlantingY").value = gardenData[s].plantings[p].y} else {document.getElementById("editPlantingY").value=""}
+  dialogEditPlanting.showModal()
+}
+
+function savePlanting() {
+  let s = speciesToEditIndex
+  let p = plantingToEditIndex
+  if (document.getElementById("editPlantingSource").value) {gardenData[s].plantings[p].source = document.getElementById("editPlantingSource").value}
+  if (document.getElementById("editPlantingDatePlanted").value) {gardenData[s].plantings[p].date_planted = document.getElementById("editPlantingDatePlanted").value}
+  if (document.getElementById("editPlantingBaseline").value) {gardenData[s].plantings[p].baseline = document.getElementById("editPlantingBaseline").value}
+  if (document.getElementById("editPlantingX").value) {gardenData[s].plantings[p].x = eval(document.getElementById("editPlantingX").value)}
+  if (document.getElementById("editPlantingY").value) {gardenData[s].plantings[p].y = eval(document.getElementById("editPlantingY").value)}
+  populateList()
+  dialogEditPlanting.close()
+  console.log(openElement)
+  openRecord(openElement)
+}
+
+function drawMap() {
+  document.getElementById("Map").innerHTML = gardenData[1]
+}
+
+function openRecord(element) {
+  openElement = element
+  console.log(element)
+  if (element.className === "fa fa-plus-square") {
+    element.classList.replace("fa-plus-square", "fa-minus-square");
+    const children = element.parentElement.parentElement.children;
+	for (let c=0; c<children.length; c++) {
+	  if (children[c].className === "plantings") {
+	    children[c].style="display: block"
+	  }
+	}
+    
+  } else {
+    element.classList.replace("fa-minus-square", "fa-plus-square");
+	    const children = element.parentElement.parentElement.children;
+	for (let c=0; c<children.length; c++) {
+	  if (children[c].className === "plantings") {
+	    children[c].style="display: none"
+	  }
+	}
+  }
+}
+
+// Function to download data to a file
+function downloadGardenData() {
+	let data = "let gardenData = " + JSON.stringify(gardenData)
+	let type = 'application/json'
+	let filename = "gardenData.js"
+    var file = new Blob([data], {type: type});
+    if (window.navigator.msSaveOrOpenBlob) // IE10+
+        window.navigator.msSaveOrOpenBlob(file, filename);
+    else { // Others
+        var a = document.createElement("a"),
+                url = URL.createObjectURL(file);
+        a.href = url;
+        a.download = filename;
+        document.body.appendChild(a);
+        a.click();
+        setTimeout(function() {
+            document.body.removeChild(a);
+            window.URL.revokeObjectURL(url);  
+        }, 0); 
+    }
+}
+
+function getnSpecies () {
+	let nSpecies = gardenData.length
+	document.getElementById("nSpecies").innerHTML = "<p>Number of species and varieties = " + nSpecies
+}
+
+function addListItem() {
+  document.getElementById("formAddEntry").style.display = "block";
+}
+
+function addSpecies() {
+	let species = document.getElementById("newSpecies").value
+	let source = document.getElementById("newSource").value
+	let date = document.getElementById("newDatePlanted").value
+	let baseline = document.getElementById("newBaseline").value
+	let x = document.getElementById("newX").value
+	let y = document.getElementById("newY").value
+	window.alert("Adding species " + species + ": " + source + ": " + date + ": " + baseline + ": " + x + ": " + y)
+	let newItem = {}
+	let plantings = []
+	let planting = {}
+	newItem.name = species
+	if (source) {planting.source = source}
+	if (date) {planting.date_planted = date}
+	if (baseline) {planting.baseline = baseline}
+	if (x) {planting.x = eval(x)}
+	if (y) {planting.y = eval(y)}
+	plantings.push(planting)
+	newItem.plantings = plantings
+	gardenData.push(newItem)
+	dialogAddNewSpecies.close()
+	populateList()
+}
+
+function cancelEditSpecies() {
+  document.getElementById("dialogEditSpecies").style.display = "none";
+}
+
+</script>
+
+<body>
+
+<dialog id="dialogAddNewSpecies">
+  <form method="dialog">
+    <div style="padding-bottom:15px; display: flex; justify-content: center;"> Add a new species or variety</div>
+    <input type="text" class = "dialogField" id="newSpecies" style="width: 300px" placeholder="Species or variety" required><br><br>
+    <input type="text" class = "dialogField" id = "newSource" placeholder="Source" style="width: 300px"><br><br>
+	<input type="text" class = "dialogField" id = "newDatePlanted"placeholder="Date planted" style="width: 300px"><br><br>
+	<div style="font-size: 15px">
+	Baseline: <input type="text" class = "dialogField" id="newBaseline" style="width: 30px; ">&nbsp;&nbsp;&nbsp;&nbsp;
+	x: <input type="text"  class = "dialogField" id="newX" style="width: 50px">&nbsp;&nbsp;&nbsp;&nbsp;
+	y: <input type="text"  class = "dialogField" id="newY" style="width: 50px">
+	</div>
+    <div style="display: flex; justify-content: center; padding-top: 30px">
+	<button class="button" type="button" onclick="addSpecies()">Add</button>&nbsp;&nbsp;
+    <button class="button" type="button" onclick="dialogAddNewSpecies.close()">Cancel</button>
+	</div>
+  </form>
+</dialog>
+
+<dialog id="dialogEditSpecies">
+  <form method="dialog">
+    <div style="padding-bottom:15px; display: flex; justify-content: center;"> Edit name of this species or variety</div>
+    <input type="text" class = "dialogField" id="editSpeciesName" style="width: 300px" placeholder="Species or variety" required><br><br>
+    <div style="display: flex; justify-content: center">
+	<button class="button" type="button" onclick="editName()">Rename</button>&nbsp;&nbsp;
+    <button class="button" type="button" onclick="dialogEditSpecies.close()">Cancel</button>
+	</div>
+  </form>
+</dialog>
+
+<dialog id="dialogEditPlanting">
+  <form method="dialog">
+    <div style="padding-bottom:15px; display: flex; justify-content: center;">Edit this planting</div>
+    <div id = "editPlantingSpeciesName" style="padding-bottom:15px; font-size:14px">Name</div>
+	<input type="text" class = "dialogField" id = "editPlantingSource" placeholder="Source" style="width: 300px"><br><br>
+	<input type="text" class = "dialogField" id = "editPlantingDatePlanted"placeholder="Date planted" style="width: 300px"><br><br>
+	<div style="font-size: 15px">
+	Baseline: <input type="text" class = "dialogField" id="editPlantingBaseline" style="width: 30px; ">&nbsp;&nbsp;&nbsp;&nbsp;
+	x: <input type="text"  class = "dialogField" id="editPlantingX" style="width: 50px">&nbsp;&nbsp;&nbsp;&nbsp;
+	y: <input type="text"  class = "dialogField" id="editPlantingY" style="width: 50px">
+	</div>
+    <div style="display: flex; justify-content: center; padding-top: 30px">
+	<button class="button" type="button" onclick="savePlanting()">Save</button>&nbsp;&nbsp;
+    <button class="button" type="button" onclick="dialogEditPlanting.close()">Cancel</button>
+	</div>
+  </form>
+</dialog>
+
+<div class="tab">
+  <button class="tablinks" onclick="openTab (event, 'List')">List</button>
+  <button class="tablinks" onclick="openTab(event, 'Map')">Map</button>
+</div>
+
+<div id="nSpecies"><p>Number of species and varieties = x</div>
+
+<!-- Tab content -->
+<div id="List" class="tabcontent"></div>
+<div id="Map" class="tabcontent"></div>
+
+
+
+</body>
+
+<script>
+getnSpecies ()
+populateList()
+document.getElementById("List").style.display = "block";
+</script>
+</html>
