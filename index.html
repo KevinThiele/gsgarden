@@ -299,7 +299,66 @@ function savePlanting() {
 }
 
 function drawMap() {
-  document.getElementById("Map").innerHTML = gardenData[1]
+  
+  //create the drawing canvas
+  document.getElementById("Map").innerHTML = '<canvas id="mapCanvas" width="1040" height="2840"></canvas>'
+
+  
+  //get the canvas element and its 2D drawing context
+  const canvas = document.getElementById('mapCanvas');
+  const ctx = canvas.getContext('2d');
+
+  const baseline3OriginX = 1008.428569, baseline3OriginY = 25.285705, baseline3EndX = 16.428569, baseline3EndY = 25.285705, baseline3Length = 2012
+
+  //add an event liostener for mouse clicks
+  canvas.addEventListener('click', function(event) {
+    // Get the bounding rectangle of the canvas
+    const rect = canvas.getBoundingClientRect();
+    
+    // Calculate coordinates relative to the canvas
+    const x = event.clientX - rect.left;
+    const y = event.clientY - rect.top;
+    
+    console.log(`Canvas X: ${x}, Canvas Y: ${y}`);
+  });
+
+  //load the background block plan raster
+  //create a new HTMLImageElement instance
+  const img = new Image();
+
+  //define what happens AFTER the image file loads
+  img.onload = function() {
+    // Arguments: source_image, destination_x, destination_y
+    ctx.drawImage(img, 0, 0); 
+	
+    // Draw a filled blue circle with a black outline at (200, 250)
+    drawCircle(ctx, 200, 25.28, 10, 'green', 'white', 1);
+
+
+  };
+
+  //set the image path to trigger the load
+  img.src = 'block plan.png';
+  
+  }
+
+function drawCircle(ctx, x, y, radius, fillColor, strokeColor = 'transparent', strokeWidth = 1) {
+    ctx.beginPath();
+    // arc(x, y, radius, startAngle, endAngle)
+    ctx.arc(x, y, radius, 0, Math.PI * 2);
+    
+    // Apply fill
+    if (fillColor) {
+        ctx.fillStyle = fillColor;
+        ctx.fill();
+    }
+    
+    // Apply stroke
+    if (strokeColor && strokeColor !== 'transparent') {
+        ctx.lineWidth = strokeWidth;
+        ctx.strokeStyle = strokeColor;
+        ctx.stroke();
+    }
 }
 
 function openRecord(element) {
@@ -444,7 +503,8 @@ function cancelEditSpecies() {
 
 <!-- Tab content -->
 <div id="List" class="tabcontent"></div>
-<div id="Map" class="tabcontent"></div>
+<div id="Map" class="tabcontent">
+</div>
 
 
 
@@ -454,5 +514,6 @@ function cancelEditSpecies() {
 getnSpecies ()
 populateList()
 document.getElementById("List").style.display = "block";
+
 </script>
 </html>
