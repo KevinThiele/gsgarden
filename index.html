@@ -217,7 +217,7 @@ function openTab(evt, tabName) {
  
 function populateList() {
 
-  let content = '<p><button class="button" type="button" onclick="showDialogAddNewSpecies()">Add new species or variety</button>&nbsp;&nbsp;&nbsp;<button class="button" type="button" onClick="downloadGardenData()">Save List</button>&nbsp;&nbsp;&nbsp;<button class="button" type="button" onClick="pushFileToGitHub()">Save3</button><p>'
+  let content = '<p><button class="button" type="button" onclick="showDialogAddNewSpecies()">Add new species or variety</button>&nbsp;&nbsp;&nbsp;<button class="button" type="button" onClick="downloadGardenData()">Save List</button>&nbsp;&nbsp;&nbsp;<button class="button" type="button" onClick="saveObjectToGitHub()">Save4</button><p>'
   gardenData = gardenData.sort((a, b) => a.name.localeCompare(b.name));
   for (let s = 0; s<gardenData.length; s++) {
 	content = content + '<div class="speciesEntry"><div class="name"><i class="fa fa-plus-square" style="font-size:14px; color:DimGray" onClick = "openRecord(this)" ></i><i class="fa fa-pencil-square-o" style="font-size:14px; color:DimGray" onClick = "showDialogEditName(' + s + ')" ></i>' + gardenData[s].name.replaceAll('"', "'") + '</div>'
@@ -407,9 +407,68 @@ function downloadGardenData() {
     }
 }
 
-/**
+async function saveObjectToGitHub() {
+
+  const repoOwner = 'KevinThiele';
+  const repoName = 'gsgarden';
+  const filePath = 'garden-data.txt';
+  const token = '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';
+  const obj = gardenData
+  const commitMessage = "docs: update via API"
+
+  const jsonString = JSON.stringify(obj, null, 2);
+  const base64Content = btoa(unescape(encodeURIComponent(jsonString)));
+  const url = `https://github.com{repoOwner}/${repoName}/contents/${filePath}`;
+  
+  let sha = null;
+
+  // Step 1: Check if file exists to get the current SHA (required for updates)
+  try {
+    const checkResponse = await fetch(url, {
+      method: 'GET',
+      headers: { 
+        'Authorization': `Bearer ${token}`,
+        'Accept': 'application/vnd.github+json'
+      }
+    });
+    
+    if (checkResponse.ok) {
+      const fileData = await checkResponse.json();
+      sha = fileData.sha;
+    }
+  } catch (error) {
+    console.log('File does not exist yet; creating a new one.');
+  }
+
+  // Step 2: Push the file to GitHub
+  const bodyData = {
+    message: commitMessage || 'Update data file via front-end',
+    content: base64Content,
+  };
+  
+  if (sha) bodyData.sha = sha; // Include SHA if updating an existing file
+
+  const response = await fetch(url, {
+    method: 'PUT',
+    headers: {
+      'Authorization': `Bearer ${token}`,
+      'Accept': 'application/vnd.github+json',
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(bodyData)
+  });
+
+  if (!response.ok) {
+    const errorDetails = await response.json();
+    throw new Error(`GitHub API Error: ${errorDetails.message}`);
+  }
+
+  return await response.json();
+}
+
+/*
  * Creates a new file or updates an existing file on GitHub
- */
+
 async function pushFileToGitHub() {
 
   const dataString = "Hello"
@@ -475,6 +534,7 @@ async function pushFileToGitHub() {
   window.alert(`Success! Commit SHA: ${result.commit.sha}`);
   return result;
 }
+*/
 
 function getnSpecies () {
 	let nSpecies = gardenData.length
