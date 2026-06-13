@@ -217,7 +217,7 @@ function openTab(evt, tabName) {
  
 function populateList() {
 
-  let content = '<p><button class="button" type="button" onclick="showDialogAddNewSpecies()">Add new species or variety</button>&nbsp;&nbsp;&nbsp;<button class="button" type="button" onClick="downloadGardenData()">Save List</button>&nbsp;&nbsp;&nbsp;<button class="button" type="button" onClick="pushFileToGitHub()">Save2</button><p>'
+  let content = '<p><button class="button" type="button" onclick="showDialogAddNewSpecies()">Add new species or variety</button>&nbsp;&nbsp;&nbsp;<button class="button" type="button" onClick="downloadGardenData()">Save List</button>&nbsp;&nbsp;&nbsp;<button class="button" type="button" onClick="pushFileToGitHub()">Save3</button><p>'
   gardenData = gardenData.sort((a, b) => a.name.localeCompare(b.name));
   for (let s = 0; s<gardenData.length; s++) {
 	content = content + '<div class="speciesEntry"><div class="name"><i class="fa fa-plus-square" style="font-size:14px; color:DimGray" onClick = "openRecord(this)" ></i><i class="fa fa-pencil-square-o" style="font-size:14px; color:DimGray" onClick = "showDialogEditName(' + s + ')" ></i>' + gardenData[s].name.replaceAll('"', "'") + '</div>'
@@ -421,7 +421,7 @@ async function pushFileToGitHub() {
   const FILE_PATH = 'garden-data.txt';
 
   //const url = `https://github.com/${OWNER}/${REPO}/contents/${FILE_PATH}`;
-  const url = 'https://github.com';
+  const url = 'https://api.github.com';
   //console.log(url)
 
   // Common headers required by GitHub
