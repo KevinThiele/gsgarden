@@ -217,7 +217,7 @@ function openTab(evt, tabName) {
  
 function populateList() {
 
-  let content = '<p><button class="button" type="button" onclick="showDialogAddNewSpecies()">Add new species or variety</button>&nbsp;&nbsp;&nbsp;<button class="button" type="button" onClick="downloadGardenData()">Save List</button>&nbsp;&nbsp;&nbsp;<button class="button" type="button" onClick="saveObjectToGitHub()">Save4</button><p>'
+  let content = '<p><button class="button" type="button" onclick="showDialogAddNewSpecies()">Add new species or variety</button>&nbsp;&nbsp;&nbsp;<button class="button" type="button" onClick="downloadGardenData()">Save List</button>&nbsp;&nbsp;&nbsp;<button class="button" type="button" onClick="saveObjectToGitHub()">Save5</button><p>'
   gardenData = gardenData.sort((a, b) => a.name.localeCompare(b.name));
   for (let s = 0; s<gardenData.length; s++) {
 	content = content + '<div class="speciesEntry"><div class="name"><i class="fa fa-plus-square" style="font-size:14px; color:DimGray" onClick = "openRecord(this)" ></i><i class="fa fa-pencil-square-o" style="font-size:14px; color:DimGray" onClick = "showDialogEditName(' + s + ')" ></i>' + gardenData[s].name.replaceAll('"', "'") + '</div>'
@@ -418,7 +418,7 @@ async function saveObjectToGitHub() {
 
   const jsonString = JSON.stringify(obj, null, 2);
   const base64Content = btoa(unescape(encodeURIComponent(jsonString)));
-  const url = `https://github.com{repoOwner}/${repoName}/contents/${filePath}`;
+  const url = `https://github.com/${repoOwner}/${repoName}/contents/${filePath}`;
   
   let sha = null;
 
