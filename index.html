@@ -408,18 +408,18 @@ function downloadGardenData() {
 }
 
 async function saveObjectToGitHub() {
-
   const repoOwner = 'KevinThiele';
   const repoName = 'gsgarden';
   const filePath = 'garden-data.txt';
   const token = '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';
-  const obj = gardenData
-  const commitMessage = "docs: update via API"
+  const obj = gardenData;
+  const commitMessage = "docs: update via API";
 
   const jsonString = JSON.stringify(obj, null, 2);
   const base64Content = btoa(unescape(encodeURIComponent(jsonString)));
-  //const url = `https://github.com/${repoOwner}/${repoName}/contents/${filePath}`;
-  const url = "https://github.com"
+  
+  // FIX 1: Use the correct API URL endpoint instead of github.com
+  const url = `https://github.com{repoOwner}/${repoName}/contents/${filePath}`;
   
   let sha = null;
 
@@ -428,8 +428,9 @@ async function saveObjectToGitHub() {
     const checkResponse = await fetch(url, {
       method: 'GET',
       headers: { 
-        'Authorization': `Bearer ${token}`,
-        'Accept': 'application/vnd.github+json'
+        'Authorization': `Bearer ${token}`, // FIX 2: Swapped to Bearer token string (or 'token YOUR_TOKEN')
+        'Accept': 'application/vnd.github+json',
+        'X-GitHub-Api-Version': '2022-11-28' // Recommended header
       }
     });
     
@@ -438,7 +439,7 @@ async function saveObjectToGitHub() {
       sha = fileData.sha;
     }
   } catch (error) {
-    console.log('File does not exist yet; creating a new one.');
+    console.log('File does not exist yet or error checking; creating a new one.', error);
   }
 
   // Step 2: Push the file to GitHub
@@ -455,6 +456,7 @@ async function saveObjectToGitHub() {
       'Authorization': `Bearer ${token}`,
       'Accept': 'application/vnd.github+json',
       'Content-Type': 'application/json',
+      'X-GitHub-Api-Version': '2022-11-28'
     },
     body: JSON.stringify(bodyData)
   });
