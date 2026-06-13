@@ -217,7 +217,7 @@ function openTab(evt, tabName) {
  
 function populateList() {
 
-  let content = '<p><button class="button" type="button" onclick="showDialogAddNewSpecies()">Add new species or variety</button>&nbsp;&nbsp;&nbsp;<button class="button" type="button" onClick="downloadGardenData()">Save List</button>&nbsp;&nbsp;&nbsp;<button class="button" type="button" onClick="pushFileToGitHub()">Save List</button><p>'
+  let content = '<p><button class="button" type="button" onclick="showDialogAddNewSpecies()">Add new species or variety</button>&nbsp;&nbsp;&nbsp;<button class="button" type="button" onClick="downloadGardenData()">Save List</button>&nbsp;&nbsp;&nbsp;<button class="button" type="button" onClick="pushFileToGitHub()">Save</button><p>'
   gardenData = gardenData.sort((a, b) => a.name.localeCompare(b.name));
   for (let s = 0; s<gardenData.length; s++) {
 	content = content + '<div class="speciesEntry"><div class="name"><i class="fa fa-plus-square" style="font-size:14px; color:DimGray" onClick = "openRecord(this)" ></i><i class="fa fa-pencil-square-o" style="font-size:14px; color:DimGray" onClick = "showDialogEditName(' + s + ')" ></i>' + gardenData[s].name.replaceAll('"', "'") + '</div>'
@@ -471,7 +471,7 @@ async function pushFileToGitHub() {
   }
 
   const result = await response.json();
-  console.log(`Success! Commit SHA: ${result.commit.sha}`);
+  window.alert(`Success! Commit SHA: ${result.commit.sha}`);
   return result;
 }
 
