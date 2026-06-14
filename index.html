@@ -387,22 +387,76 @@ function openRecord(element) {
 
 
 
+function parsePayload(parsed) {
+  if (Array.isArray(parsed)) return { lastModified: 0, data: parsed };
+  return parsed;
+}
+
+function formatTs(ts) {
+  return new Date(ts).toLocaleString('en-AU', { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' });
+}
+
+function mergeGardenData(localPayload, githubPayload) {
+  const localMap = new Map(localPayload.data.map(p => [p.name, p]));
+  const githubMap = new Map(githubPayload.data.map(p => [p.name, p]));
+  const allNames = new Set([...localMap.keys(), ...githubMap.keys()]);
+  const localTime = formatTs(localPayload.lastModified);
+  const githubTime = formatTs(githubPayload.lastModified);
+  const merged = [];
+
+  for (const name of allNames) {
+    const local = localMap.get(name);
+    const remote = githubMap.get(name);
+    if (local && !remote) {
+      merged.push(local);
+    } else if (!local && remote) {
+      merged.push(remote);
+    } else if (JSON.stringify(local) === JSON.stringify(remote)) {
+      merged.push(local);
+    } else {
+      merged.push({ ...local, name: `${name} [local ${localTime}]` });
+      merged.push({ ...remote, name: `${name} [github ${githubTime}]` });
+    }
+  }
+
+  return merged;
+}
+
 async function loadGardenData() {
+  let githubPayload = null;
+  let localPayload = null;
+
   try {
     const response = await fetch('https://raw.githubusercontent.com/KevinThiele/gsgarden/main/garden_data_nt.js');
     if (!response.ok) throw new Error('Fetch failed');
-    gardenData = await response.json();
-    localStorage.setItem('gardenData', JSON.stringify(gardenData));
+    githubPayload = parsePayload(await response.json());
   } catch (error) {
-    const stored = localStorage.getItem('gardenData');
-    if (stored) {
-      gardenData = JSON.parse(stored);
-      console.warn('Loaded from localStorage (offline fallback)');
-    } else {
-      gardenData = [];
-      console.error('No data available - starting empty');
-    }
+    console.warn('Could not fetch from GitHub:', error);
   }
+
+  const stored = localStorage.getItem('gardenData');
+  if (stored) localPayload = parsePayload(JSON.parse(stored));
+
+  if (githubPayload && localPayload) {
+    if (localPayload.lastModified > githubPayload.lastModified) {
+      gardenData = mergeGardenData(localPayload, githubPayload);
+      console.warn('Local data is newer — merging and syncing to GitHub');
+      await saveObjectToGitHub();
+    } else {
+      gardenData = githubPayload.data;
+      localStorage.setItem('gardenData', JSON.stringify(githubPayload));
+    }
+  } else if (githubPayload) {
+    gardenData = githubPayload.data;
+    localStorage.setItem('gardenData', JSON.stringify(githubPayload));
+  } else if (localPayload) {
+    gardenData = localPayload.data;
+    console.warn('Loaded from localStorage (offline fallback)');
+  } else {
+    gardenData = [];
+    console.error('No data available - starting empty');
+  }
+
   getnSpecies();
   populateList();
   document.getElementById("List").style.display = "block";
@@ -417,7 +471,8 @@ async function saveObjectToGitHub() {
     'X-GitHub-Api-Version': '2022-11-28'
   };
 
-  const jsonString = JSON.stringify(gardenData, null, 2);
+  const payload = { lastModified: Date.now(), data: gardenData };
+  const jsonString = JSON.stringify(payload, null, 2);
   const base64Content = btoa(unescape(encodeURIComponent(jsonString)));
 
   let sha = null;
@@ -448,7 +503,7 @@ async function saveObjectToGitHub() {
     throw new Error(`GitHub API Error: ${errorDetails.message}`);
   }
 
-  localStorage.setItem('gardenData', JSON.stringify(gardenData));
+  localStorage.setItem('gardenData', JSON.stringify(payload));
   return await response.json();
 }
 
