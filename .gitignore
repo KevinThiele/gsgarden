@@ -1,1 +1,12 @@
+# Never commit tokens or local settings - the app gets its GitHub access from the Cloudflare Worker
 config.js
+.env
+
+# Files Windows and macOS create in folders
+Thumbs.db
+desktop.ini
+.DS_Store
+
+# Editor settings
+.vscode/
+.idea/

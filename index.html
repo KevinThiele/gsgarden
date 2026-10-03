@@ -771,10 +771,6 @@ function getnSpecies () {
 	document.getElementById("nSpecies").innerHTML = "<p>Number of species and varieties = " + nSpecies
 }
 
-function addListItem() {
-  document.getElementById("formAddEntry").style.display = "block";
-}
-
 function addSpecies() {
 	let species = document.getElementById("newSpecies").value.trim()
 	if (!species) {
@@ -804,10 +800,6 @@ function addSpecies() {
 	markUnsaved()
 	getnSpecies()
 	populateList()
-}
-
-function cancelEditSpecies() {
-  document.getElementById("dialogEditSpecies").style.display = "none";
 }
 
 </script>
