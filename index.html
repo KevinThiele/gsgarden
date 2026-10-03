@@ -201,6 +201,28 @@ body.deleteMode .deleteIcon {
   color: #a5281b;
 }
 
+#saveStatus {
+  font-size: 15px;
+  padding-bottom: 12px;
+}
+
+#saveStatus:empty {
+  display: none;
+}
+
+#saveStatus.unsaved, #saveStatus.pending {
+  color: #b9770e;
+}
+
+#saveStatus.saved {
+  color: #1e8449;
+}
+
+#saveStatus.failed {
+  color: #c0392b;
+  font-weight: bold;
+}
+
 #confirmDeleteMessage {
   padding-bottom: 20px;
   text-align: center;
@@ -253,7 +275,7 @@ function openTab(evt, tabName) {
  
 function populateList() {
 
-  let content = '<p><button class="button" type="button" onclick="showDialogAddNewSpecies()">Add new species or variety</button>&nbsp;&nbsp;&nbsp;<button class="button" type="button" onClick="saveObjectToGitHub()">Save</button><p>'
+  let content = '<p><button class="button" type="button" onclick="showDialogAddNewSpecies()">Add new species or variety</button>&nbsp;&nbsp;&nbsp;<button class="button" type="button" onClick="saveClicked()">Save</button><p>'
   gardenData = gardenData.sort((a, b) => a.name.localeCompare(b.name));
   for (let s = 0; s<gardenData.length; s++) {
 	const isOpen = openSpecies.has(gardenData[s].name)
@@ -300,10 +322,15 @@ function showDialogEditName(s) {
 }
 
 function editName() {
-  let newName = document.getElementById("editSpeciesName").value  
+  let newName = document.getElementById("editSpeciesName").value.trim()
+  if (!newName) {
+    window.alert("Please enter a name.")
+    return
+  }
   let oldName = gardenData[speciesToEditIndex].name
   if (openSpecies.delete(oldName)) {openSpecies.add(newName)}
   gardenData[speciesToEditIndex].name = newName
+  markUnsaved()
   populateList()
   dialogEditSpecies.close()
 }
@@ -316,22 +343,43 @@ function editPlanting(s,p) {
   speciesToEditIndex = s
   plantingToEditIndex = p
   document.getElementById("editPlantingSpeciesName").innerHTML = gardenData[s].name
-  document.getElementById("editPlantingSource").value = gardenData[s].plantings[p].source
-  document.getElementById("editPlantingDatePlanted").value = gardenData[s].plantings[p].date_planted
-  if (gardenData[s].plantings[p].baseline) {document.getElementById("editPlantingBaseline").value = gardenData[s].plantings[p].baseline} else {document.getElementById("editPlantingBaseline").value=""}
-  if (gardenData[s].plantings[p].x) {document.getElementById("editPlantingX").value = gardenData[s].plantings[p].x} else {document.getElementById("editPlantingX").value=""}
-  if (gardenData[s].plantings[p].y) {document.getElementById("editPlantingY").value = gardenData[s].plantings[p].y} else {document.getElementById("editPlantingY").value=""}
+  const planting = gardenData[s].plantings[p]
+  document.getElementById("editPlantingSource").value = planting.source ?? ""
+  document.getElementById("editPlantingDatePlanted").value = planting.date_planted ?? ""
+  document.getElementById("editPlantingBaseline").value = planting.baseline ?? ""
+  document.getElementById("editPlantingX").value = planting.x ?? ""
+  document.getElementById("editPlantingY").value = planting.y ?? ""
   dialogEditPlanting.showModal()
 }
 
+//reads a number box: null if left empty, NaN (after warning the user) if it isn't a number
+function readNumberField(id, label) {
+  const text = document.getElementById(id).value.trim()
+  if (text === "") {return null}
+  const value = Number(text)
+  if (Number.isNaN(value)) {window.alert(label + " must be a number, e.g. 150")}
+  return value
+}
+
+//an empty number box removes that value from the planting
+function setOrRemove(planting, key, value) {
+  if (value === null) {delete planting[key]} else {planting[key] = value}
+}
+
 function savePlanting() {
-  let s = speciesToEditIndex
-  let p = plantingToEditIndex
-  if (document.getElementById("editPlantingSource").value) {gardenData[s].plantings[p].source = document.getElementById("editPlantingSource").value}
-  if (document.getElementById("editPlantingDatePlanted").value) {gardenData[s].plantings[p].date_planted = document.getElementById("editPlantingDatePlanted").value}
-  if (document.getElementById("editPlantingBaseline").value) {gardenData[s].plantings[p].baseline = document.getElementById("editPlantingBaseline").value}
-  if (document.getElementById("editPlantingX").value) {gardenData[s].plantings[p].x = eval(document.getElementById("editPlantingX").value)}
-  if (document.getElementById("editPlantingY").value) {gardenData[s].plantings[p].y = eval(document.getElementById("editPlantingY").value)}
+  const baseline = readNumberField("editPlantingBaseline", "Baseline")
+  const x = readNumberField("editPlantingX", "x")
+  const y = readNumberField("editPlantingY", "y")
+  if ([baseline, x, y].some(Number.isNaN)) {return}
+
+  //every field is written back, so clearing a box clears the value
+  const planting = gardenData[speciesToEditIndex].plantings[plantingToEditIndex]
+  planting.source = document.getElementById("editPlantingSource").value.trim()
+  planting.date_planted = document.getElementById("editPlantingDatePlanted").value.trim()
+  setOrRemove(planting, "baseline", baseline)
+  setOrRemove(planting, "x", x)
+  setOrRemove(planting, "y", y)
+  markUnsaved()
   populateList()
   dialogEditPlanting.close()
 }
@@ -430,7 +478,7 @@ function escapeHtml(str) {
 function confirmDeleteSpecies(s) {
   const species = gardenData[s]
   const n = species.plantings.length
-  pendingDelete = {type: "species", name: species.name}
+  pendingDelete = {type: "species", s: s, name: species.name}
   document.getElementById("confirmDeleteMessage").innerHTML =
     'Delete <b>' + escapeHtml(species.name) + '</b> and its ' + n + ' planting' + (n === 1 ? '' : 's') + '?'
   dialogConfirmDelete.showModal()
@@ -444,7 +492,7 @@ function confirmDeletePlanting(s, p) {
   if (planting.date_planted) {bits.push('planted ' + planting.date_planted)}
   if (planting.baseline) {bits.push('baseline ' + planting.baseline)}
   const detail = bits.length ? ' (' + escapeHtml(bits.join(', ')) + ')' : ''
-  pendingDelete = {type: "planting", name: species.name, index: p}
+  pendingDelete = {type: "planting", s: s, name: species.name, index: p}
   document.getElementById("confirmDeleteMessage").innerHTML =
     'Delete this planting of <b>' + escapeHtml(species.name) + '</b>' + detail + '?'
   dialogConfirmDelete.showModal()
@@ -453,10 +501,11 @@ function confirmDeletePlanting(s, p) {
 function performDelete() {
   if (!pendingDelete) {return}
 
-  //resolve by name - populateList() re-sorts gardenData, so a stored index can go stale
-  const s = gardenData.findIndex(entry => entry.name === pendingDelete.name)
-  if (s === -1) {
-    console.warn('Nothing to delete - species no longer present:', pendingDelete.name)
+  //use the index the bin was clicked on - looking up by name would hit the wrong entry when two
+  //plants share a name. The name check guards against the list having changed since.
+  const s = pendingDelete.s
+  if (gardenData[s]?.name !== pendingDelete.name) {
+    console.warn('Nothing deleted - the list changed since the bin was clicked:', pendingDelete.name)
   } else if (pendingDelete.type === "species") {
     openSpecies.delete(pendingDelete.name)
     gardenData.splice(s, 1)
@@ -464,6 +513,7 @@ function performDelete() {
     gardenData[s].plantings.splice(pendingDelete.index, 1)
   }
 
+  markUnsaved()
   cancelDelete()
   getnSpecies()
   populateList()
@@ -609,6 +659,40 @@ async function saveObjectToGitHub() {
   return await response.json();
 }
 
+let hasUnsavedChanges = false, saving = false
+
+function showSaveStatus(message, kind) {
+  const status = document.getElementById("saveStatus")
+  status.textContent = message
+  status.className = kind
+}
+
+function markUnsaved() {
+  hasUnsavedChanges = true
+  showSaveStatus("Unsaved changes - press Save to keep them", "unsaved")
+}
+
+async function saveClicked() {
+  if (saving) {return}
+  saving = true
+  showSaveStatus("Saving...", "pending")
+  try {
+    await saveObjectToGitHub()
+    hasUnsavedChanges = false
+    showSaveStatus("Saved at " + new Date().toLocaleTimeString('en-AU', { hour: '2-digit', minute: '2-digit' }), "saved")
+  } catch (error) {
+    console.error('Save failed:', error)
+    showSaveStatus("Save failed - your changes are still on screen. Check your connection and press Save again.", "failed")
+  } finally {
+    saving = false
+  }
+}
+
+//warn before closing or reloading the page with unsaved changes
+window.addEventListener("beforeunload", event => {
+  if (hasUnsavedChanges) {event.preventDefault()}
+})
+
 function getnSpecies () {
 	let nSpecies = gardenData.length
 	document.getElementById("nSpecies").innerHTML = "<p>Number of species and varieties = " + nSpecies
@@ -619,26 +703,30 @@ function addListItem() {
 }
 
 function addSpecies() {
-	let species = document.getElementById("newSpecies").value
-	let source = document.getElementById("newSource").value
-	let date = document.getElementById("newDatePlanted").value
-	let baseline = document.getElementById("newBaseline").value
-	let x = document.getElementById("newX").value
-	let y = document.getElementById("newY").value
-	window.alert("Adding species " + species + ": " + source + ": " + date + ": " + baseline + ": " + x + ": " + y)
-	let newItem = {}
-	let plantings = []
-	let planting = {}
-	newItem.name = species
-	if (source) {planting.source = source}
-	if (date) {planting.date_planted = date}
-	if (baseline) {planting.baseline = baseline}
-	if (x) {planting.x = eval(x)}
-	if (y) {planting.y = eval(y)}
-	plantings.push(planting)
-	newItem.plantings = plantings
-	gardenData.push(newItem)
+	let species = document.getElementById("newSpecies").value.trim()
+	if (!species) {
+		window.alert("Please enter a name.")
+		return
+	}
+	let baseline = readNumberField("newBaseline", "Baseline")
+	let x = readNumberField("newX", "x")
+	let y = readNumberField("newY", "y")
+	if ([baseline, x, y].some(Number.isNaN)) {return}
+
+	let planting = {
+		source: document.getElementById("newSource").value.trim(),
+		date_planted: document.getElementById("newDatePlanted").value.trim()
+	}
+	setOrRemove(planting, "baseline", baseline)
+	setOrRemove(planting, "x", x)
+	setOrRemove(planting, "y", y)
+	gardenData.push({name: species, plantings: [planting]})
+
+	//clear the boxes so the next add starts empty
+	document.querySelectorAll("#dialogAddNewSpecies input").forEach(input => {input.value = ""})
 	dialogAddNewSpecies.close()
+	markUnsaved()
+	getnSpecies()
 	populateList()
 }
 
@@ -717,6 +805,8 @@ function cancelEditSpecies() {
 <div id="deleteModeRow">
   <label><input type="checkbox" id="deleteModeToggle" onchange="toggleDeleteMode(this)"> Show delete buttons</label>
 </div>
+
+<div id="saveStatus"></div>
 
 <!-- Tab content -->
 <div id="List" class="tabcontent"></div>

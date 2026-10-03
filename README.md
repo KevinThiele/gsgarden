@@ -5,7 +5,9 @@ A web app for recording the plants in the garden and where they are planted. It 
 - `index.html` — the app
 - `garden_data.js` — the garden data (JSON). The app loads and saves this file; each save is a commit.
 
-This document covers connecting the app to GitHub through a Cloudflare Worker, and how to make and test changes to the app.
+**How to use the app: see [USER_GUIDE.md](USER_GUIDE.md).**
+
+This document covers connecting the app to GitHub through a Cloudflare Worker, making and testing changes to the app, and restoring the data if it goes wrong.
 
 ## Why a Cloudflare Worker is needed
 
@@ -178,6 +180,22 @@ The app opens in the browser at `http://127.0.0.1:5500` and reloads automaticall
 **Alternative: Python** — in the `gsgarden` folder run `python -m http.server 8000` and open `http://localhost:8000`.
 
 Saves made while testing locally go to the real `garden_data.js` on GitHub, just like saves from the live site.
+
+## Restoring the data
+
+Every save is a commit, so any earlier version of `garden_data.js` can be brought back from github.com:
+
+1. Open `garden_data.js` in the repo and click **History**.
+2. Find the last good version, open it, click **Raw**, and copy everything.
+3. Go back to the current `garden_data.js`, click the pencil to edit, replace everything with what you copied.
+4. **Update the timestamp** — see below.
+5. Commit.
+
+**Why the timestamp matters.** The file starts with `"lastModified": ` followed by a long number — the time of that save. Each device also keeps its own copy of the data with its own timestamp. When the app opens, if the device's copy is *newer* than GitHub's, the app assumes the device has unsaved changes, merges the two and saves the result — which would bring the bad data straight back, with duplicate `[local …]` / `[github …]` entries.
+
+A restored file carries its old timestamp, so it looks older than the bad copy still sitting on the device that saved it. To prevent this, replace the number after `"lastModified": ` with the current time: open the browser's developer console (F12), type `Date.now()`, press Enter, and paste the number it shows. Every device will then treat the restored file as the newest and replace its own copy.
+
+Very early versions of the file start with `[` and have no timestamp. If restoring one of those, wrap it like this: `{"lastModified": <the number>, "data": ` at the start and `}` at the end.
 
 ## Limitations
 
