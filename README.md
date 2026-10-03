@@ -19,14 +19,15 @@ A Cloudflare Worker solves this by acting as a proxy — the app sends load and 
 
 The Worker and the new app both use `garden_data.js`, which only exists once the `nt` branch is merged into `main`. The current live app on `main` still uses `garden_data_nt.js` and does not use the Worker.
 
-Do things in this order:
+The Worker is set up (steps 1–5 below are done) and runs at `https://gsgarden-proxy.kevin-thiele.workers.dev`. Until the merge it answers "Not Found", because `garden_data.js` is not on `main` yet — that is expected.
 
-1. **Bring the data up to date.** If any saves were made from the live app since `nt` was last updated, copy the latest `garden_data_nt.js` from `main` over `garden_data.js` on `nt`. To check, run `git fetch` and `git log origin/main --oneline` and look for commits named "docs: update garden data via app".
-2. **Merge `nt` into `main`.** This renames the data file on `main` and puts the new app live.
-3. **Set up the Worker** (steps 1–4 below).
-4. **Connect the app to the Worker** (step 5) and commit that to `main`.
+To go live:
 
-Between steps 2 and 4 the live app can show the copy of the data saved in the browser, but cannot load fresh data or save.
+1. **Bring the data up to date.** If any saves were made from the live app since `nt` was last updated, copy the latest `garden_data_nt.js` from `main` over `garden_data.js` on `nt`. To check, run `git fetch` and `git log nt..origin/main --oneline` — if it prints nothing, there is nothing to copy.
+2. **Merge `nt` into `main`.** This renames the data file on `main` and puts the new app live, already connected to the Worker.
+3. **Test** (step 6).
+
+The setup steps below are kept for reference, e.g. if the Worker ever needs recreating.
 
 ## Setup
 
@@ -36,18 +37,29 @@ Go to https://cloudflare.com and sign up. The free tier is sufficient.
 
 ### 2. Generate a new GitHub token
 
-Kevin's previous token was exposed in the public repo and GitHub revoked it automatically. A new one is needed:
+Kevin's previous token was exposed in the public repo and GitHub revoked it automatically. A new one is needed. It must be created from **Kevin's** GitHub account, because he owns the repo. (This is a personal access token, not a deploy key — deploy keys are for git over SSH and do not work with the API.)
 
-1. GitHub → Settings → Developer Settings → Personal Access Tokens → Fine-grained tokens
-2. Generate new token, restrict it to the `gsgarden` repo, and set **Contents** to **Read and Write**
-3. Copy the token — it is needed in step 4. Do not commit it anywhere.
+1. Click the profile picture (top right) → **Settings** — the account settings, not the repo's Settings tab
+2. At the bottom of the left menu, **Developer settings** → **Personal access tokens** → **Fine-grained tokens** → **Generate new token**
+3. Fill in:
+   - **Token name**: e.g. `gsgarden Cloudflare Worker`
+   - **Expiration**: the longest option offered
+   - **Resource owner**: `KevinThiele`
+   - **Repository access**: **Only select repositories** → `gsgarden`. The permissions only appear once a repository is selected.
+   - **Permissions**: click **Add permissions**, choose **Contents** and set it to **Read and write**. (On older versions of the page, expand **Repository permissions** and set **Contents** there.) Metadata: Read-only is added automatically; add nothing else.
+4. Click **Generate token** and copy it straight away — GitHub only shows it once. It is needed in step 4. Do not commit it anywhere.
+
+**When the token expires**, loading and saving stop and the app shows "Save failed". Create a new token the same way and replace the `GITHUB_TOKEN` secret in Cloudflare (step 4) — the app itself does not need changing. A calendar reminder a week before the expiry date is worthwhile.
 
 ### 3. Create a new Worker
 
+Cloudflare changes its dashboard wording from time to time, so the button names may differ slightly. Do not use **New deployment** — that releases a new version of a Worker that already exists.
+
 1. In the Cloudflare dashboard, go to **Workers & Pages**
-2. Click **Create** → **Create Worker**
-3. Give it a name, e.g. `gsgarden-proxy`
-4. Replace the default code with the following:
+2. Click **Create application**
+3. Choose the **Start with Hello World!** template (**Get started**)
+4. Give it a name, e.g. `gsgarden-proxy`, and click **Deploy**. This deploys Cloudflare's sample code — it is replaced next.
+5. Click **Edit code**, delete the sample code and paste in the following:
 
 ```js
 // The live site, plus local addresses for testing changes before they go live:
@@ -112,25 +124,25 @@ export default {
 };
 ```
 
-5. Click **Deploy**
-6. Note the Worker's address shown on the page, e.g. `https://gsgarden-proxy.<your-subdomain>.workers.dev` — it is needed in step 5.
+6. Click **Deploy** again to publish this code
+7. Find the Worker's address: on the Worker's page open **Settings** → **Domains & Routes** and look for the **workers.dev** entry, e.g. `gsgarden-proxy.<your-subdomain>.workers.dev`. If it shows as disabled, enable it. Put `https://` in front of it — it is needed in step 5.
 
 ### 4. Store the token as a secret
 
-1. In the Worker settings, go to **Settings** → **Variables and Secrets**
-2. Under **Secrets**, click **Add secret**
+1. Go back to the Worker's page (the back arrow or its name at the top of the editor), then open **Settings** and scroll down past **Domains & Routes** to **Variables and Secrets**
+2. Click **Add**, set the type to **Secret**
 3. Name it `GITHUB_TOKEN` and paste the token from step 2 as the value
-4. Click **Deploy**
+4. Click **Deploy** (or **Save**)
 
 ### 5. Connect the app to the Worker
 
-In `index.html`, paste the Worker address into `DATA_URL`, which is currently empty:
+In `index.html`, the Worker address goes in `DATA_URL` (already done):
 
 ```js
-const DATA_URL = 'https://gsgarden-proxy.<your-subdomain>.workers.dev';
+const DATA_URL = 'https://gsgarden-proxy.kevin-thiele.workers.dev';
 ```
 
-That is the only change needed. The app already sends requests in the form the Worker expects — only the `Content-Type` header, with the Worker adding the token and GitHub headers itself. Commit and push this to `main`.
+That is the only change needed. The app already sends requests in the form the Worker expects — only the `Content-Type` header, with the Worker adding the token and GitHub headers itself. If the Worker is ever recreated with a different name, update this address.
 
 ### 6. Test
 

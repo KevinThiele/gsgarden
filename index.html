@@ -637,7 +637,7 @@ function mergeGardenData(localPayload, githubPayload) {
 // Cloudflare Worker that reads and saves garden_data.js on GitHub (see README.md).
 // Paste the deployed Worker URL here. Until then, loading falls back to the copy in localStorage.
 // Going through the API rather than raw.githubusercontent.com avoids its ~5 min CDN cache.
-const DATA_URL = '';
+const DATA_URL = 'https://gsgarden-proxy.kevin-thiele.workers.dev';
 
 function githubHeaders() {
   // The Worker adds the token and GitHub headers itself, and its CORS setup only accepts Content-Type
