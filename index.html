@@ -516,7 +516,7 @@ function mergeGardenData(localPayload, githubPayload) {
 // Read and write through the API rather than raw.githubusercontent.com, which is CDN-cached for ~5 min
 // and would serve stale data straight after a save. When moving to the Cloudflare Worker, point this at
 // the Worker URL and drop the Authorization header.
-const DATA_URL = 'https://api.github.com/repos/KevinThiele/gsgarden/contents/garden_data_nt.js';
+const DATA_URL = 'https://api.github.com/repos/KevinThiele/gsgarden/contents/garden_data.js';
 
 function githubHeaders() {
   return {

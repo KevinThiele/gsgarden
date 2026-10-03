@@ -29,7 +29,7 @@ Kevin's previous token was exposed in the public repo and GitHub revoked it auto
 
 ```js
 const ALLOWED_ORIGIN = 'https://kevinthiele.github.io';
-const GITHUB_URL = 'https://api.github.com/repos/KevinThiele/gsgarden/contents/garden_data_nt.js';
+const GITHUB_URL = 'https://api.github.com/repos/KevinThiele/gsgarden/contents/garden_data.js';
 
 export default {
   async fetch(request, env) {
@@ -93,7 +93,7 @@ All three changes are in `index.html`, and they must be made together.
 **a. Point the app at the Worker.** Change `DATA_URL`:
 
 ```js
-const DATA_URL = 'https://api.github.com/repos/KevinThiele/gsgarden/contents/garden_data_nt.js';
+const DATA_URL = 'https://api.github.com/repos/KevinThiele/gsgarden/contents/garden_data.js';
 ```
 
 to:
@@ -138,7 +138,7 @@ In practice, this means someone who wanted to could replace the garden data with
 
 This is acceptable because:
 
-- **Damage is limited to one file.** The Worker can only read or save `garden_data_nt.js`. It cannot touch the rest of the repo, other repos, or Kevin's GitHub account — unlike a leaked token.
+- **Damage is limited to one file.** The Worker can only read or save `garden_data.js`. It cannot touch the rest of the repo, other repos, or Kevin's GitHub account — unlike a leaked token.
 - **It cannot delete.** The Worker refuses anything except reading and saving.
 - **Every change can be undone.** Each save is a git commit, so any earlier version of the file can be restored from the repo history.
 - **The data is not sensitive.** It is a public list of plants, and the repo is already public.
