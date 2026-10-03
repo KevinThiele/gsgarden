@@ -1,6 +1,7 @@
 <html>
 
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
@@ -223,6 +224,45 @@ body.deleteMode .deleteIcon {
   font-weight: bold;
 }
 
+#searchRow {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  padding-bottom: 12px;
+}
+
+/* 16px stops phones zooming in when the box is tapped */
+#searchBox {
+  flex: 1;
+  max-width: 400px;
+  font-size: 16px;
+  padding: 6px 8px;
+}
+
+.searchSummary {
+  font-size: 15px;
+  color: DimGray;
+}
+
+/* Touch screens: bigger icons and buttons so they are easy to hit with a finger.
+   !important is needed because the icons set their size inline. */
+@media (pointer: coarse) {
+  .speciesEntry i {
+    font-size: 22px !important;
+    padding: 8px;
+  }
+
+  .button {
+    height: 36px;
+  }
+
+  /* below 16px, iPhones zoom the whole page in when a box is tapped */
+  dialog input {
+    font-size: 16px;
+    padding: 4px;
+  }
+}
+
 #confirmDeleteMessage {
   padding-bottom: 20px;
   text-align: center;
@@ -259,6 +299,7 @@ function openTab(evt, tabName) {
   // Show the current tab, and add an "active" class to the button that opened the tab
   document.getElementById(tabName).style.display = "block";
   evt.currentTarget.className += " active";
+  document.getElementById("searchRow").style.display = tabName === "List" ? "" : "none";
   
   //add the content to the tab's div
   switch(tabName) {
@@ -273,11 +314,22 @@ function openTab(evt, tabName) {
   }
 }
  
+//search matches the plant name or any of its plantings' sources, ignoring case
+function matchesSearch(species, query) {
+  if (!query) {return true}
+  if (species.name.toLowerCase().includes(query)) {return true}
+  return species.plantings.some(planting => (planting.source ?? "").toLowerCase().includes(query))
+}
+
 function populateList() {
 
-  let content = '<p><button class="button" type="button" onclick="showDialogAddNewSpecies()">Add new species or variety</button>&nbsp;&nbsp;&nbsp;<button class="button" type="button" onClick="saveClicked()">Save</button><p>'
+  let content = ''
+  let shown = 0
+  const query = document.getElementById("searchBox").value.trim().toLowerCase()
   gardenData = gardenData.sort((a, b) => a.name.localeCompare(b.name));
   for (let s = 0; s<gardenData.length; s++) {
+	if (!matchesSearch(gardenData[s], query)) {continue}
+	shown++
 	const isOpen = openSpecies.has(gardenData[s].name)
 	content = content + '<div class="speciesEntry"><div class="name"><i class="fa ' + (isOpen ? 'fa-minus-square' : 'fa-plus-square') + '" style="font-size:14px; color:DimGray" onClick = "openRecord(this,' + s + ')" ></i><i class="fa fa-pencil-square-o" style="font-size:14px; color:DimGray" onClick = "showDialogEditName(' + s + ')" ></i><i class="fa fa-trash-o deleteIcon" style="font-size:14px; color:#c0392b" onClick = "confirmDeleteSpecies(' + s + ')" ></i>' + escapeHtml(gardenData[s].name) + '</div>'
 	let plantings = gardenData[s].plantings
@@ -307,8 +359,17 @@ function populateList() {
 	}
 	content = content + '<p><button class="button" type="button" onclick="addNewPlanting(' + s + ')">Add new planting</button></div></div>'
   }
-  
-  document.getElementById("List").innerHTML = content
+
+  let header = '<p><button class="button" type="button" onclick="showDialogAddNewSpecies()">Add new species or variety</button>&nbsp;&nbsp;&nbsp;<button class="button" type="button" onClick="saveClicked()">Save</button><p>'
+  if (query) {
+    header = header + '<div class="searchSummary">' + (shown ? 'Showing ' + shown + ' of ' + gardenData.length + ' plants' : 'No plants match "' + escapeHtml(query) + '"') + '</div>'
+  }
+  document.getElementById("List").innerHTML = header + content
+}
+
+function clearSearch() {
+  document.getElementById("searchBox").value = ""
+  populateList()
 }
 
 function showDialogAddNewSpecies() {
@@ -335,15 +396,20 @@ function editName() {
   dialogEditSpecies.close()
 }
 
+//the planting dialog doubles as "add": a null planting index means a new planting
 function addNewPlanting(s) {
-  console.log("Add new planting")
+  showPlantingDialog(s, null, {}, "Add a planting")
 }
 
 function editPlanting(s,p) {
+  showPlantingDialog(s, p, gardenData[s].plantings[p], "Edit this planting")
+}
+
+function showPlantingDialog(s, p, planting, title) {
   speciesToEditIndex = s
   plantingToEditIndex = p
-  document.getElementById("editPlantingSpeciesName").innerHTML = gardenData[s].name
-  const planting = gardenData[s].plantings[p]
+  document.getElementById("plantingDialogTitle").textContent = title
+  document.getElementById("editPlantingSpeciesName").textContent = gardenData[s].name
   document.getElementById("editPlantingSource").value = planting.source ?? ""
   document.getElementById("editPlantingDatePlanted").value = planting.date_planted ?? ""
   document.getElementById("editPlantingBaseline").value = planting.baseline ?? ""
@@ -372,13 +438,20 @@ function savePlanting() {
   const y = readNumberField("editPlantingY", "y")
   if ([baseline, x, y].some(Number.isNaN)) {return}
 
+  const species = gardenData[speciesToEditIndex]
+  const isNew = plantingToEditIndex === null
+  const planting = isNew ? {} : species.plantings[plantingToEditIndex]
+
   //every field is written back, so clearing a box clears the value
-  const planting = gardenData[speciesToEditIndex].plantings[plantingToEditIndex]
   planting.source = document.getElementById("editPlantingSource").value.trim()
   planting.date_planted = document.getElementById("editPlantingDatePlanted").value.trim()
   setOrRemove(planting, "baseline", baseline)
   setOrRemove(planting, "x", x)
   setOrRemove(planting, "y", y)
+  if (isNew) {
+    species.plantings.push(planting)
+    openSpecies.add(species.name)  //show the plant open so the new planting is visible
+  }
   markUnsaved()
   populateList()
   dialogEditPlanting.close()
@@ -725,6 +798,9 @@ function addSpecies() {
 	//clear the boxes so the next add starts empty
 	document.querySelectorAll("#dialogAddNewSpecies input").forEach(input => {input.value = ""})
 	dialogAddNewSpecies.close()
+	//clear any search and open the new plant so it can be seen
+	document.getElementById("searchBox").value = ""
+	openSpecies.add(species)
 	markUnsaved()
 	getnSpecies()
 	populateList()
@@ -769,7 +845,7 @@ function cancelEditSpecies() {
 
 <dialog id="dialogEditPlanting">
   <form method="dialog">
-    <div style="padding-bottom:15px; display: flex; justify-content: center;">Edit this planting</div>
+    <div id="plantingDialogTitle" style="padding-bottom:15px; display: flex; justify-content: center;">Edit this planting</div>
     <div id = "editPlantingSpeciesName" style="padding-bottom:15px; font-size:14px">Name</div>
 	<input type="text" class = "dialogField" id = "editPlantingSource" placeholder="Source" style="width: 300px"><br><br>
 	<input type="text" class = "dialogField" id = "editPlantingDatePlanted"placeholder="Date planted" style="width: 300px"><br><br>
@@ -807,6 +883,11 @@ function cancelEditSpecies() {
 </div>
 
 <div id="saveStatus"></div>
+
+<div id="searchRow">
+  <input type="search" id="searchBox" placeholder="Search plants or sources" oninput="populateList()" autocomplete="off">
+  <button class="button" type="button" onclick="clearSearch()">Clear</button>
+</div>
 
 <!-- Tab content -->
 <div id="List" class="tabcontent"></div>

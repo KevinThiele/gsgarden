@@ -21,7 +21,14 @@ If you try to close or reload the page with unsaved changes, the browser asks yo
 - **Number of species and varieties** — how many plants are in the list.
 - **Show delete buttons** — a tick box that reveals the delete (bin) icons. See [Deleting](#deleting).
 - The save message, when there's something to report.
+- A **search** box. See [Finding a plant](#finding-a-plant).
 - The list itself, in alphabetical order, with two buttons at the top: **Add new species or variety** and **Save**.
+
+## Finding a plant
+
+Type in the search box above the list — part of a name is enough, e.g. `geran`. The list shrinks to matching plants as you type, and shows how many match. It also finds plants by source, so typing `woodbridge` shows everything from Woodbridge.
+
+Click **Clear** to show the whole list again.
 
 ## Looking at a plant
 
@@ -40,7 +47,19 @@ Each planting shows:
 3. Click **Add**.
 4. Press **Save**.
 
-The new plant is added with one planting, made from the details you entered.
+The new plant is added with one planting, made from the details you entered, and shown opened. If you were searching, the search is cleared so you can see it.
+
+## Adding another planting of a plant you already have
+
+Use this when you buy more of something, transplant or divide a plant, or plant the same thing in several places.
+
+1. Open the plant with **+**.
+2. Click **Add new planting** underneath its plantings.
+3. Fill in the source, date planted, baseline, x and y — whatever you know.
+4. Click **Save** in the box.
+5. Press **Save** at the top of the list.
+
+Don't add the plant again with **Add new species or variety** — that makes a second plant with the same name.
 
 ## Changing a plant's name
 
@@ -82,13 +101,12 @@ If you close the page before saving, the changes are lost.
 
 **Baseline, x and y must be numbers**, such as `150`. If you type anything else, the app tells you and doesn't save it.
 
-**Give every plant a different name.** The app tells plants apart by name. Two plants with exactly the same name open and close together in the list, and can get mixed up if the app ever has to combine two versions of the data. Add something to tell them apart, e.g. `Salvia (front bed)`. The list currently has two `Geranium` and two `Salvia` entries worth renaming.
+**Give every plant a different name.** The app tells plants apart by name. Two plants with exactly the same name open and close together in the list, and can get mixed up if the app ever has to combine two versions of the data. For another of the same plant, use **Add new planting** instead. The list currently has two `Geranium` and two `Salvia` entries — if each pair is really the same plant, add the second one's details as a new planting of the first, then delete the second.
 
 **Entries ending in `[local …]` and `[github …]`.** If you ever see a plant listed twice like this, the app found two different versions of it and kept both rather than guess. Compare them, rename the correct one back to its proper name (pencil), delete the other (bin), and press **Save**.
 
 ## Not working yet
 
-- **Add new planting** — the button under each plant does nothing yet. For now, a new planting can't be added to an existing plant from the app.
 - **Map** — unfinished. The background plan image (`block plan.png`) isn't in the repo yet, so the map is blank apart from a single test dot. Plants are not drawn on it yet.
 
 ## If something goes wrong
