@@ -279,7 +279,7 @@ function populateList() {
   gardenData = gardenData.sort((a, b) => a.name.localeCompare(b.name));
   for (let s = 0; s<gardenData.length; s++) {
 	const isOpen = openSpecies.has(gardenData[s].name)
-	content = content + '<div class="speciesEntry"><div class="name"><i class="fa ' + (isOpen ? 'fa-minus-square' : 'fa-plus-square') + '" style="font-size:14px; color:DimGray" onClick = "openRecord(this,' + s + ')" ></i><i class="fa fa-pencil-square-o" style="font-size:14px; color:DimGray" onClick = "showDialogEditName(' + s + ')" ></i><i class="fa fa-trash-o deleteIcon" style="font-size:14px; color:#c0392b" onClick = "confirmDeleteSpecies(' + s + ')" ></i>' + gardenData[s].name.replaceAll('"', "'") + '</div>'
+	content = content + '<div class="speciesEntry"><div class="name"><i class="fa ' + (isOpen ? 'fa-minus-square' : 'fa-plus-square') + '" style="font-size:14px; color:DimGray" onClick = "openRecord(this,' + s + ')" ></i><i class="fa fa-pencil-square-o" style="font-size:14px; color:DimGray" onClick = "showDialogEditName(' + s + ')" ></i><i class="fa fa-trash-o deleteIcon" style="font-size:14px; color:#c0392b" onClick = "confirmDeleteSpecies(' + s + ')" ></i>' + escapeHtml(gardenData[s].name) + '</div>'
 	let plantings = gardenData[s].plantings
 	content=content+'<div class="plantings" style="display:' + (isOpen ? 'block' : 'none') + '">'
 	for (let p=0; p<plantings.length; p++) {
@@ -295,10 +295,10 @@ function populateList() {
 				content = content + '<div class="source" style="display:inline">Source: unknown</div>'
 				break;
 			default:
-				content = content + '<div class="source" style="display:inline">Source: ' + plantings[p].source + '</div>'
+				content = content + '<div class="source" style="display:inline">Source: ' + escapeHtml(plantings[p].source) + '</div>'
 		}
 		if (plantings[p].date_planted) {
-			content = content + '<div class="planted" style="display:block">Planted: ' + plantings[p].date_planted + '</div>'
+			content = content + '<div class="planted" style="display:block">Planted: ' + escapeHtml(plantings[p].date_planted) + '</div>'
 		}
 		if (plantings[p].baseline) {
 			content = content + '<div class="location" style="display:block">Location: baseline=' + plantings[p].baseline + '; x=' + plantings[p].x + '; y=' + plantings[p].y + '</div>'
