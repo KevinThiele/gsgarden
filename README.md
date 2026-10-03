@@ -1,6 +1,13 @@
-# Storing the GitHub Token securely with Cloudflare Workers
+# Garden app
 
-## Why this is needed
+A web app for recording the plants in the garden and where they are planted. It runs at `https://kevinthiele.github.io/gsgarden/` and works on desktop, phone and tablet.
+
+- `index.html` — the app
+- `garden_data.js` — the garden data (JSON). The app loads and saves this file; each save is a commit.
+
+This document covers connecting the app to GitHub through a Cloudflare Worker, and how to make and test changes to the app.
+
+## Why a Cloudflare Worker is needed
 
 The app loads and saves the garden data file (`garden_data.js`) through the GitHub API, which requires a personal access token. The app itself holds no token — putting one in the page would make it public, and keeping it in a local file would mean Kevin could only save from one computer.
 
@@ -41,8 +48,14 @@ Kevin's previous token was exposed in the public repo and GitHub revoked it auto
 4. Replace the default code with the following:
 
 ```js
-// The live site, plus a local web server for testing
-const ALLOWED_ORIGINS = ['https://kevinthiele.github.io', 'http://localhost:8000'];
+// The live site, plus local addresses for testing changes before they go live:
+// VS Code's Live Server extension (port 5500) and `python -m http.server` (port 8000)
+const ALLOWED_ORIGINS = [
+  'https://kevinthiele.github.io',
+  'http://127.0.0.1:5500',
+  'http://localhost:5500',
+  'http://localhost:8000'
+];
 const GITHUB_URL = 'https://api.github.com/repos/KevinThiele/gsgarden/contents/garden_data.js';
 
 export default {
@@ -119,26 +132,52 @@ That is the only change needed. The app already sends requests in the form the W
 
 ### 6. Test
 
-Test on the live GitHub Pages site (or locally — see below):
+On the live site, `https://kevinthiele.github.io/gsgarden/`:
 
 1. Open the app and check the plant list loads.
 2. Make a small edit, click **Save**, and check a new commit called "docs: update garden data via app" appears in the repo.
 3. Reload the page and check the edit is still there.
-
-#### Testing on your own computer
-
-The Worker (the code from step 3) only answers the addresses in its `ALLOWED_ORIGINS` list: the live site and `http://localhost:8000`. To test on your own computer, serve the app at that local address rather than double-clicking `index.html` — a page opened straight from a file has no web address the Worker can recognise:
-
-1. In the `gsgarden` folder, run `python -m http.server 8000`
-2. Open `http://localhost:8000`
-
-Saves made while testing locally go to the real `garden_data.js` on GitHub, just like saves from the live site.
 
 If something fails, open the browser's developer console (F12) — load and save errors are reported there, not on the page.
 
 ## Result
 
 Once set up, Kevin can open the app on any device — desktop, phone, tablet — and save directly to GitHub with no local configuration needed.
+
+## Making changes to the app
+
+### The usual way: commit, then test on the live site
+
+1. Edit and commit the change on github.com (or upload the changed file with **Add file → Upload files**).
+2. Wait for GitHub to rebuild the site. This usually takes under a minute, sometimes 2 or more. The repo's **Actions** tab shows progress — a green tick means the new version is live.
+3. Open the live site and do a **hard refresh** — **Ctrl+F5** on Windows, **Cmd+Shift+R** on a Mac. On a phone, close and reopen the tab, or use a private/incognito tab.
+
+The hard refresh matters. GitHub tells browsers they may keep a copy of the page for up to 10 minutes, so a normal refresh can keep showing the old version even after the new one is live — which looks as if the change did not work.
+
+Things to keep in mind:
+
+- **Mistakes go live.** A broken change breaks the site until it is fixed or reverted.
+- **Take care with the load and save code.** If a change affects how data is loaded or saved, check the plant list looks right *before* clicking **Save** — a bug there could save bad data. If that happens, the previous version of `garden_data.js` can be restored from the repo history, because every save is a commit.
+- **Every test is a commit.** Harmless, but the history gets busier.
+
+### Optional: testing on your own computer first
+
+For bigger changes, the app can be tried on your own computer before anything goes live.
+
+Double-clicking `index.html` is not enough — a page opened straight from a file has no web address, so the Worker will not answer it and the plant list stays empty. The app needs to be served by a small local web server at one of the addresses in the Worker's `ALLOWED_ORIGINS` list. You also need a copy of the repo on your computer — with git, or from the repo page via **Code → Download ZIP**.
+
+**Easiest on Windows: VS Code with Live Server** (no command line needed)
+
+1. Install [VS Code](https://code.visualstudio.com/)
+2. In VS Code, open the Extensions panel (Ctrl+Shift+X), search for **Live Server** (by Ritwick Dey) and click **Install**
+3. Open the `gsgarden` folder in VS Code (**File → Open Folder**)
+4. Right-click `index.html` and choose **Open with Live Server**
+
+The app opens in the browser at `http://127.0.0.1:5500` and reloads automatically each time a file is saved. When happy with the changes, put them live by uploading the changed file on github.com (**Add file → Upload files**) or by committing and pushing with git.
+
+**Alternative: Python** — in the `gsgarden` folder run `python -m http.server 8000` and open `http://localhost:8000`.
+
+Saves made while testing locally go to the real `garden_data.js` on GitHub, just like saves from the live site.
 
 ## Limitations
 
