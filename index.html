@@ -173,13 +173,51 @@ i {
 
 }
 
+/* Delete icons stay hidden until delete mode is armed */
+.deleteIcon {
+  display: none;
+}
+
+body.deleteMode .deleteIcon {
+  display: inline;
+}
+
+#deleteModeRow {
+  padding-bottom: 12px;
+  font-size: 15px;
+}
+
+#deleteModeRow label {
+  cursor: pointer;
+  user-select: none;
+}
+
+.buttonDanger {
+  color: #c0392b;
+}
+
+.buttonDanger:hover {
+  background: #fdf3f2;
+  color: #a5281b;
+}
+
+#confirmDeleteMessage {
+  padding-bottom: 20px;
+  text-align: center;
+  font-size: 16px;
+  line-height: 1.4;
+}
+
 </style>
 
 <script src="config.js" type="text/javascript"></script>
 
 <script>
 
-let speciesToEditIndex, plantingToEditIndex, openElement
+let speciesToEditIndex, plantingToEditIndex, pendingDelete
+
+//names of species whose plantings are expanded, so the state survives a re-render
+const openSpecies = new Set()
 
 function openTab(evt, tabName) {
 
@@ -220,11 +258,12 @@ function populateList() {
   let content = '<p><button class="button" type="button" onclick="showDialogAddNewSpecies()">Add new species or variety</button>&nbsp;&nbsp;&nbsp;<button class="button" type="button" onClick="saveObjectToGitHub()">Save</button><p>'
   gardenData = gardenData.sort((a, b) => a.name.localeCompare(b.name));
   for (let s = 0; s<gardenData.length; s++) {
-	content = content + '<div class="speciesEntry"><div class="name"><i class="fa fa-plus-square" style="font-size:14px; color:DimGray" onClick = "openRecord(this)" ></i><i class="fa fa-pencil-square-o" style="font-size:14px; color:DimGray" onClick = "showDialogEditName(' + s + ')" ></i>' + gardenData[s].name.replaceAll('"', "'") + '</div>'
+	const isOpen = openSpecies.has(gardenData[s].name)
+	content = content + '<div class="speciesEntry"><div class="name"><i class="fa ' + (isOpen ? 'fa-minus-square' : 'fa-plus-square') + '" style="font-size:14px; color:DimGray" onClick = "openRecord(this,' + s + ')" ></i><i class="fa fa-pencil-square-o" style="font-size:14px; color:DimGray" onClick = "showDialogEditName(' + s + ')" ></i><i class="fa fa-trash-o deleteIcon" style="font-size:14px; color:#c0392b" onClick = "confirmDeleteSpecies(' + s + ')" ></i>' + gardenData[s].name.replaceAll('"', "'") + '</div>'
 	let plantings = gardenData[s].plantings
-	content=content+'<div class="plantings" style="display:none">'
+	content=content+'<div class="plantings" style="display:' + (isOpen ? 'block' : 'none') + '">'
 	for (let p=0; p<plantings.length; p++) {
-		content=content+'<div class="planting"><i class="fa fa-pencil-square-o" style="font-size:14px; color:DimGray;" onClick = "editPlanting(' + s + ',' + p + ')" ></i>'
+		content=content+'<div class="planting"><i class="fa fa-pencil-square-o" style="font-size:14px; color:DimGray;" onClick = "editPlanting(' + s + ',' + p + ')" ></i><i class="fa fa-trash-o deleteIcon" style="font-size:14px; color:#c0392b" onClick = "confirmDeletePlanting(' + s + ',' + p + ')" ></i>'
 		switch(plantings[p].source) {
 			case "Original":
 				content = content + '<div class="source" style="display:inline">Source: original</div>'
@@ -264,6 +303,8 @@ function showDialogEditName(s) {
 
 function editName() {
   let newName = document.getElementById("editSpeciesName").value  
+  let oldName = gardenData[speciesToEditIndex].name
+  if (openSpecies.delete(oldName)) {openSpecies.add(newName)}
   gardenData[speciesToEditIndex].name = newName
   populateList()
   dialogEditSpecies.close()
@@ -295,8 +336,6 @@ function savePlanting() {
   if (document.getElementById("editPlantingY").value) {gardenData[s].plantings[p].y = eval(document.getElementById("editPlantingY").value)}
   populateList()
   dialogEditPlanting.close()
-  console.log(openElement)
-  openRecord(openElement)
 }
 
 function drawMap() {
@@ -362,27 +401,79 @@ function drawCircle(ctx, x, y, radius, fillColor, strokeColor = 'transparent', s
     }
 }
 
-function openRecord(element) {
-  openElement = element
-  console.log(element)
-  if (element.className === "fa fa-plus-square") {
-    element.classList.replace("fa-plus-square", "fa-minus-square");
-    const children = element.parentElement.parentElement.children;
-	for (let c=0; c<children.length; c++) {
-	  if (children[c].className === "plantings") {
-	    children[c].style="display: block"
-	  }
-	}
-    
+function openRecord(element, s) {
+  const name = gardenData[s].name
+  const children = element.parentElement.parentElement.children
+  const isOpening = element.classList.contains("fa-plus-square")
+
+  if (isOpening) {
+    element.classList.replace("fa-plus-square", "fa-minus-square")
+    openSpecies.add(name)
   } else {
-    element.classList.replace("fa-minus-square", "fa-plus-square");
-	    const children = element.parentElement.parentElement.children;
-	for (let c=0; c<children.length; c++) {
-	  if (children[c].className === "plantings") {
-	    children[c].style="display: none"
-	  }
-	}
+    element.classList.replace("fa-minus-square", "fa-plus-square")
+    openSpecies.delete(name)
   }
+
+  for (let c=0; c<children.length; c++) {
+    if (children[c].className === "plantings") {
+      children[c].style = isOpening ? "display: block" : "display: none"
+    }
+  }
+}
+
+function toggleDeleteMode(checkbox) {
+  document.body.classList.toggle("deleteMode", checkbox.checked)
+}
+
+function escapeHtml(str) {
+  return String(str).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
+}
+
+function confirmDeleteSpecies(s) {
+  const species = gardenData[s]
+  const n = species.plantings.length
+  pendingDelete = {type: "species", name: species.name}
+  document.getElementById("confirmDeleteMessage").innerHTML =
+    'Delete <b>' + escapeHtml(species.name) + '</b> and its ' + n + ' planting' + (n === 1 ? '' : 's') + '?'
+  dialogConfirmDelete.showModal()
+}
+
+function confirmDeletePlanting(s, p) {
+  const species = gardenData[s]
+  const planting = species.plantings[p]
+  const bits = []
+  if (planting.source) {bits.push(planting.source)}
+  if (planting.date_planted) {bits.push('planted ' + planting.date_planted)}
+  if (planting.baseline) {bits.push('baseline ' + planting.baseline)}
+  const detail = bits.length ? ' (' + escapeHtml(bits.join(', ')) + ')' : ''
+  pendingDelete = {type: "planting", name: species.name, index: p}
+  document.getElementById("confirmDeleteMessage").innerHTML =
+    'Delete this planting of <b>' + escapeHtml(species.name) + '</b>' + detail + '?'
+  dialogConfirmDelete.showModal()
+}
+
+function performDelete() {
+  if (!pendingDelete) {return}
+
+  //resolve by name - populateList() re-sorts gardenData, so a stored index can go stale
+  const s = gardenData.findIndex(entry => entry.name === pendingDelete.name)
+  if (s === -1) {
+    console.warn('Nothing to delete - species no longer present:', pendingDelete.name)
+  } else if (pendingDelete.type === "species") {
+    openSpecies.delete(pendingDelete.name)
+    gardenData.splice(s, 1)
+  } else {
+    gardenData[s].plantings.splice(pendingDelete.index, 1)
+  }
+
+  cancelDelete()
+  getnSpecies()
+  populateList()
+}
+
+function cancelDelete() {
+  pendingDelete = null
+  dialogConfirmDelete.close()
 }
 
 
@@ -422,14 +513,30 @@ function mergeGardenData(localPayload, githubPayload) {
   return merged;
 }
 
+// Read and write through the API rather than raw.githubusercontent.com, which is CDN-cached for ~5 min
+// and would serve stale data straight after a save. When moving to the Cloudflare Worker, point this at
+// the Worker URL and drop the Authorization header.
+const DATA_URL = 'https://api.github.com/repos/KevinThiele/gsgarden/contents/garden_data_nt.js';
+
+function githubHeaders() {
+  return {
+    'Authorization': `Bearer ${GITHUB_TOKEN}`,
+    'Accept': 'application/vnd.github+json',
+    'Content-Type': 'application/json',
+    'X-GitHub-Api-Version': '2022-11-28'
+  };
+}
+
 async function loadGardenData() {
   let githubPayload = null;
   let localPayload = null;
 
   try {
-    const response = await fetch('https://raw.githubusercontent.com/KevinThiele/gsgarden/main/garden_data_nt.js');
+    const response = await fetch(DATA_URL, { headers: githubHeaders(), cache: 'no-store' });
     if (!response.ok) throw new Error('Fetch failed');
-    githubPayload = parsePayload(await response.json());
+    const fileData = await response.json();
+    const jsonString = decodeURIComponent(escape(atob(fileData.content.replace(/\n/g, ''))));
+    githubPayload = parsePayload(JSON.parse(jsonString));
   } catch (error) {
     console.warn('Could not fetch from GitHub:', error);
   }
@@ -441,7 +548,11 @@ async function loadGardenData() {
     if (localPayload.lastModified > githubPayload.lastModified) {
       gardenData = mergeGardenData(localPayload, githubPayload);
       console.warn('Local data is newer — merging and syncing to GitHub');
-      await saveObjectToGitHub();
+      try {
+        await saveObjectToGitHub();
+      } catch (error) {
+        console.warn('Sync-on-load failed — continuing with local data:', error);
+      }
     } else {
       gardenData = githubPayload.data;
       localStorage.setItem('gardenData', JSON.stringify(githubPayload));
@@ -463,13 +574,8 @@ async function loadGardenData() {
 }
 
 async function saveObjectToGitHub() {
-  const url = 'https://api.github.com/repos/KevinThiele/gsgarden/contents/garden_data_nt.js';
-  const headers = {
-    'Authorization': `Bearer ${GITHUB_TOKEN}`,
-    'Accept': 'application/vnd.github+json',
-    'Content-Type': 'application/json',
-    'X-GitHub-Api-Version': '2022-11-28'
-  };
+  const url = DATA_URL;
+  const headers = githubHeaders();
 
   const payload = { lastModified: Date.now(), data: gardenData };
   const jsonString = JSON.stringify(payload, null, 2);
@@ -477,7 +583,7 @@ async function saveObjectToGitHub() {
 
   let sha = null;
   try {
-    const checkResponse = await fetch(url, { method: 'GET', headers });
+    const checkResponse = await fetch(url, { method: 'GET', headers, cache: 'no-store' });
     if (checkResponse.ok) {
       const fileData = await checkResponse.json();
       sha = fileData.sha;
@@ -515,7 +621,7 @@ async function pushFileToGitHub() {
   const dataString = "Hello"
   const commitMessage = "docs: update via API"
 
-  const TOKEN = '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';
+  const TOKEN = 'xxxx';
   const OWNER = 'KevinThiele';
   const REPO = 'gsgarden';
   const FILE_PATH = 'garden-data.txt';
@@ -665,12 +771,26 @@ function cancelEditSpecies() {
   </form>
 </dialog>
 
+<dialog id="dialogConfirmDelete">
+  <form method="dialog">
+    <div id="confirmDeleteMessage"></div>
+    <div style="display: flex; justify-content: center">
+	<button class="button buttonDanger" type="button" onclick="performDelete()">Delete</button>&nbsp;&nbsp;
+    <button class="button" type="button" onclick="cancelDelete()">Cancel</button>
+	</div>
+  </form>
+</dialog>
+
 <div class="tab">
   <button class="tablinks" onclick="openTab (event, 'List')">List</button>
   <button class="tablinks" onclick="openTab(event, 'Map')">Map</button>
 </div>
 
 <div id="nSpecies"><p>Number of species and varieties = x</div>
+
+<div id="deleteModeRow">
+  <label><input type="checkbox" id="deleteModeToggle" onchange="toggleDeleteMode(this)"> Show delete buttons</label>
+</div>
 
 <!-- Tab content -->
 <div id="List" class="tabcontent"></div>
