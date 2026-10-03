@@ -644,6 +644,15 @@ function githubHeaders() {
   return { 'Content-Type': 'application/json' };
 }
 
+//the save time of the data this page started from - used to spot saves made on another device since
+let baseLastModified = 0;
+
+//the contents API returns the file base64-encoded
+function decodeFile(fileData) {
+  const jsonString = decodeURIComponent(escape(atob(fileData.content.replace(/\n/g, ''))));
+  return parsePayload(JSON.parse(jsonString));
+}
+
 async function loadGardenData() {
   let githubPayload = null;
   let localPayload = null;
@@ -652,9 +661,7 @@ async function loadGardenData() {
     if (!DATA_URL) throw new Error('DATA_URL is not set');
     const response = await fetch(DATA_URL, { headers: githubHeaders(), cache: 'no-store' });
     if (!response.ok) throw new Error('Fetch failed');
-    const fileData = await response.json();
-    const jsonString = decodeURIComponent(escape(atob(fileData.content.replace(/\n/g, ''))));
-    githubPayload = parsePayload(JSON.parse(jsonString));
+    githubPayload = decodeFile(await response.json());
   } catch (error) {
     console.warn('Could not fetch from GitHub:', error);
   }
@@ -665,6 +672,7 @@ async function loadGardenData() {
   if (githubPayload && localPayload) {
     if (localPayload.lastModified > githubPayload.lastModified) {
       gardenData = mergeGardenData(localPayload, githubPayload);
+      baseLastModified = githubPayload.lastModified;
       console.warn('Local data is newer — merging and syncing to GitHub');
       try {
         await saveObjectToGitHub();
@@ -673,13 +681,16 @@ async function loadGardenData() {
       }
     } else {
       gardenData = githubPayload.data;
+      baseLastModified = githubPayload.lastModified;
       localStorage.setItem('gardenData', JSON.stringify(githubPayload));
     }
   } else if (githubPayload) {
     gardenData = githubPayload.data;
+    baseLastModified = githubPayload.lastModified;
     localStorage.setItem('gardenData', JSON.stringify(githubPayload));
   } else if (localPayload) {
     gardenData = localPayload.data;
+    baseLastModified = localPayload.lastModified;
     console.warn('Loaded from localStorage (offline fallback)');
   } else {
     gardenData = [];
@@ -691,7 +702,16 @@ async function loadGardenData() {
   document.getElementById("List").style.display = "block";
 }
 
-async function saveObjectToGitHub() {
+//thrown when the file on GitHub was saved from another device after this page loaded its data
+class SaveConflictError extends Error {
+  constructor(remoteLastModified) {
+    super('Changed on another device since this page loaded');
+    this.remoteLastModified = remoteLastModified;
+  }
+}
+
+//overwrite: save even if another device has saved since this page loaded
+async function saveObjectToGitHub(overwrite = false) {
   if (!DATA_URL) throw new Error('DATA_URL is not set - paste the Cloudflare Worker URL into index.html');
   const url = DATA_URL;
   const headers = githubHeaders();
@@ -706,8 +726,13 @@ async function saveObjectToGitHub() {
     if (checkResponse.ok) {
       const fileData = await checkResponse.json();
       sha = fileData.sha;
+      const remoteLastModified = decodeFile(fileData).lastModified;
+      if (!overwrite && remoteLastModified > baseLastModified) {
+        throw new SaveConflictError(remoteLastModified);
+      }
     }
   } catch (error) {
+    if (error instanceof SaveConflictError) throw error;
     console.log('File does not exist yet, will create.', error);
   }
 
@@ -729,6 +754,7 @@ async function saveObjectToGitHub() {
   }
 
   localStorage.setItem('gardenData', JSON.stringify(payload));
+  baseLastModified = payload.lastModified;
   return await response.json();
 }
 
@@ -750,7 +776,20 @@ async function saveClicked() {
   saving = true
   showSaveStatus("Saving...", "pending")
   try {
-    await saveObjectToGitHub()
+    try {
+      await saveObjectToGitHub()
+    } catch (error) {
+      if (!(error instanceof SaveConflictError)) throw error
+      const overwrite = window.confirm(
+        "The plant list was saved from another device (" + formatTs(error.remoteLastModified) + ") after you opened it here.\n\n" +
+        "OK - save anyway. Your version replaces it, and the other device's changes are lost.\n" +
+        "Cancel - don't save. Your changes stay on screen.")
+      if (!overwrite) {
+        showSaveStatus("Not saved - the list was changed on another device. Note your changes, reload the page to get the latest list, then make them again.", "failed")
+        return
+      }
+      await saveObjectToGitHub(true)
+    }
     hasUnsavedChanges = false
     showSaveStatus("Saved at " + new Date().toLocaleTimeString('en-AU', { hour: '2-digit', minute: '2-digit' }), "saved")
   } catch (error) {

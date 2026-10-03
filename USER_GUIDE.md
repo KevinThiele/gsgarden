@@ -12,6 +12,7 @@ A message above the list tells you where you are:
 - **Saving...** — wait a moment
 - **Saved at 3:45 pm** (green) — done
 - **Save failed** (red) — nothing was saved, but your changes are still on screen. Check your signal and press Save again.
+- **Not saved - the list was changed on another device** (red) — see [Using more than one device](#things-to-watch-out-for).
 
 If you try to close or reload the page with unsaved changes, the browser asks you to confirm first.
 
@@ -97,7 +98,10 @@ If you close the page before saving, the changes are lost.
 
 ## Things to watch out for
 
-**Using more than one device.** The last save wins. If the app is open on both your phone and your computer, and you save on one and then the other, the second save overwrites the first. Before making changes on a device, **reload the page** so it has the latest list.
+**Using more than one device.** Before making changes on a device, **reload the page** so it has the latest list. If the list was saved from another device after you opened it, pressing **Save** shows a warning: "The plant list was saved from another device…". You then choose:
+
+- **Cancel** (usually the right choice) — nothing is saved and your changes stay on screen. Jot down what you changed, reload the page to get the latest list, make your changes again, and press **Save**.
+- **OK** — your version is saved and *replaces* the other device's. Anything changed on the other device since you opened the page here is lost. Only choose this if you know the other device's changes don't matter.
 
 **Baseline, x and y must be numbers**, such as `150`. If you type anything else, the app tells you and doesn't save it.
 
@@ -113,4 +117,6 @@ If you close the page before saving, the changes are lost.
 
 - **The list is empty or won't load** — check you have signal and reload. If it's still empty, the app may not be able to reach GitHub; ask whoever looks after the app.
 - **Save failed** — your changes are still on screen. Keep the page open, check your signal and press Save again.
+- **Not saved - the list was changed on another device** — see [Using more than one device](#things-to-watch-out-for): note your changes, reload, and make them again.
+- **Changes made on another device have disappeared** — another device saved over them, usually by choosing **OK** at the warning. They aren't lost: every save is kept in the repo history. Ask whoever looks after the app to bring back the earlier version (see the README).
 - **Data was saved wrongly or deleted by mistake** — nothing is lost for good. Every save is kept in the repo history, so an earlier version can be brought back. See the README for how.
