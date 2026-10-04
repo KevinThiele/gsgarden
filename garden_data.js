@@ -1,5 +1,5 @@
 {
-  "lastModified": 1791075496019,
+  "lastModified": 1791075891159,
   "data": [
     {
       "name": "Achillea \"Moonshine\"",
@@ -1056,6 +1056,18 @@
           "baseline": "4",
           "x": 1250,
           "y": 165
+        }
+      ]
+    },
+    {
+      "name": "Echinacea paradoxa var. paradoxa",
+      "plantings": [
+        {
+          "source": "Woodside Plants and Design",
+          "date_planted": "June 2026",
+          "baseline": 1,
+          "x": 930,
+          "y": 130
         }
       ]
     },
@@ -2404,6 +2416,18 @@
           "baseline": 2,
           "x": 640,
           "y": 20
+        }
+      ]
+    },
+    {
+      "name": "Rudbeckia fulgida ‘Little Goldstar’",
+      "plantings": [
+        {
+          "source": "Woodside Plants & Design",
+          "date_planted": "",
+          "baseline": 1,
+          "x": 1220,
+          "y": 95
         }
       ]
     },
