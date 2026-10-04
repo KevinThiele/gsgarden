@@ -1,5 +1,5 @@
 {
-  "lastModified": 1791075891159,
+  "lastModified": 1791075959444,
   "data": [
     {
       "name": "Achillea \"Moonshine\"",
@@ -1063,7 +1063,7 @@
       "name": "Echinacea paradoxa var. paradoxa",
       "plantings": [
         {
-          "source": "Woodside Plants and Design",
+          "source": "Woodside Plants & Design",
           "date_planted": "June 2026",
           "baseline": 1,
           "x": 930,
