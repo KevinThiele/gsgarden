@@ -1,5 +1,5 @@
 {
-  "lastModified": 1791107921440,
+  "lastModified": 1791108466710,
   "data": [
     {
       "name": "Achillea \"Moonshine\"",
@@ -234,6 +234,18 @@
           "date_planted": "Feb 26",
           "baseline": 2,
           "x": 1415,
+          "y": 130
+        }
+      ]
+    },
+    {
+      "name": "Anisodontea ‘African Rose Mirembe’",
+      "plantings": [
+        {
+          "source": "",
+          "date_planted": "",
+          "baseline": 1,
+          "x": 1550,
           "y": 130
         }
       ]
@@ -1856,18 +1868,6 @@
           "baseline": 1,
           "x": 1745,
           "y": 85
-        }
-      ]
-    },
-    {
-      "name": "Malvaceae",
-      "plantings": [
-        {
-          "source": "",
-          "date_planted": "",
-          "baseline": 1,
-          "x": 1550,
-          "y": 130
         }
       ]
     },
