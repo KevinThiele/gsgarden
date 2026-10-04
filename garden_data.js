@@ -1,5 +1,5 @@
 {
-  "lastModified": 1791075959444,
+  "lastModified": 1791076181818,
   "data": [
     {
       "name": "Achillea \"Moonshine\"",
@@ -1904,6 +1904,18 @@
           "baseline": 2,
           "x": 1820,
           "y": 550
+        }
+      ]
+    },
+    {
+      "name": "Monarda ‘Gardenview Scarlet’",
+      "plantings": [
+        {
+          "source": "Bull Botanicals",
+          "date_planted": "April 2026",
+          "baseline": 1,
+          "x": 1600,
+          "y": 650
         }
       ]
     },
