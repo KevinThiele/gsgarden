@@ -1,5 +1,5 @@
 {
-  "lastModified": 1791079157427,
+  "lastModified": 1791107921440,
   "data": [
     {
       "name": "Achillea \"Moonshine\"",
@@ -1656,18 +1656,6 @@
       ]
     },
     {
-      "name": "Leucanthemum superbum \"Sunshine\"",
-      "plantings": [
-        {
-          "source": "Woodbridge",
-          "date_planted": "Jan 26",
-          "baseline": 3,
-          "x": 260,
-          "y": 85
-        }
-      ]
-    },
-    {
       "name": "Leucanthemum x superbum",
       "plantings": [
         {
@@ -1676,6 +1664,18 @@
           "baseline": 1,
           "x": 1520,
           "y": 180
+        }
+      ]
+    },
+    {
+      "name": "Leucanthemum x superbum \"Sunshine\"",
+      "plantings": [
+        {
+          "source": "Woodbridge",
+          "date_planted": "Jan 26",
+          "baseline": 3,
+          "x": 260,
+          "y": 85
         }
       ]
     },
