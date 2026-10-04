@@ -1,5 +1,5 @@
 {
-  "lastModified": 1791017309832,
+  "lastModified": 1791075496019,
   "data": [
     {
       "name": "Achillea \"Moonshine\"",
@@ -120,6 +120,18 @@
           "baseline": 4,
           "x": 60,
           "y": 130
+        }
+      ]
+    },
+    {
+      "name": "Allium",
+      "plantings": [
+        {
+          "source": "",
+          "date_planted": "",
+          "baseline": 1,
+          "x": 540,
+          "y": 415
         }
       ]
     },
