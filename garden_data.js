@@ -1,5 +1,5 @@
 {
-  "lastModified": 1791076181818,
+  "lastModified": 1791079157427,
   "data": [
     {
       "name": "Achillea \"Moonshine\"",
@@ -1417,6 +1417,18 @@
           "baseline": 2,
           "x": 1485,
           "y": 245
+        }
+      ]
+    },
+    {
+      "name": "Hamamelis x intermedia’Pallida’",
+      "plantings": [
+        {
+          "source": "Heritage Nursery Yarralumla",
+          "date_planted": "July 2026",
+          "baseline": 1,
+          "x": 1970,
+          "y": 50
         }
       ]
     },
