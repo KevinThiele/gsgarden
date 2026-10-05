@@ -331,7 +331,7 @@ function populateList() {
 	if (!matchesSearch(gardenData[s], query)) {continue}
 	shown++
 	const isOpen = openSpecies.has(gardenData[s].name)
-	content = content + '<div class="speciesEntry"><div class="name"><i class="fa ' + (isOpen ? 'fa-minus-square' : 'fa-plus-square') + '" style="font-size:14px; color:DimGray" onClick = "openRecord(this,' + s + ')" ></i><i class="fa fa-pencil-square-o" style="font-size:14px; color:DimGray" onClick = "showDialogEditName(' + s + ')" ></i><i class="fa fa-trash-o deleteIcon" style="font-size:14px; color:#c0392b" onClick = "confirmDeleteSpecies(' + s + ')" ></i>' + escapeHtml(gardenData[s].name) + '</div>'
+	content = content + '<div class="speciesEntry"><div class="name"><i class="fa ' + (isOpen ? 'fa-minus-square' : 'fa-plus-square') + '" style="font-size:14px; color:DimGray" onClick = "openRecord(this,' + s + ')" ></i><i class="fa fa-pencil-square-o" style="font-size:14px; color:DimGray" onClick = "showDialogEditName(' + s + ')" ></i><i class="fa fa-trash-o deleteIcon" style="font-size:14px; color:#c0392b" onClick = "confirmDeleteSpecies(' + s + ')" ></i>' + escapeHtml(gardenData[s].name) + '<p>Family: ' + escapeHtml(gardenData[s].family) + '</div>'
 	let plantings = gardenData[s].plantings
 	content=content+'<div class="plantings" style="display:' + (isOpen ? 'block' : 'none') + '">'
 	for (let p=0; p<plantings.length; p++) {
