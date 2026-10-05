@@ -3220,7 +3220,7 @@
     },
     {
       "name": "Veronica gentianoides",
-      "family": "",
+      "family": "Plantaginaceae",
       "plantings": [
         {
           "source": "Woodbridge",
@@ -3233,7 +3233,7 @@
     },
     {
       "name": "Veronica ornata \"Ornate Silver\"",
-      "family": "",
+      "family": "Plantaginaceae",
       "plantings": [
         {
           "source": "Bull Botanics Bairnsdale",
@@ -3246,7 +3246,7 @@
     },
     {
       "name": "Veronica peduncularis \"Oxford Blue\"",
-      "family": "",
+      "family": "Plantaginaceae",
       "plantings": [
         {
           "source": "Bonnyrigg Garden Centre Sydney",
@@ -3259,7 +3259,7 @@
     },
     {
       "name": "Veronica spicata",
-      "family": "",
+      "family": "Plantaginaceae",
       "plantings": [
         {
           "source": "Woodbridge",
@@ -3272,7 +3272,7 @@
     },
     {
       "name": "Veronicastrum virginicum",
-      "family": "",
+      "family": "Plantaginaceae",
       "plantings": [
         {
           "source": "Woodbridge",
@@ -3285,7 +3285,7 @@
     },
     {
       "name": "Veronicastrum virginicum \"Lavendelturm\"",
-      "family": "",
+      "family": "Plantaginaceae",
       "plantings": [
         {
           "source": "Dickson Nursery",
@@ -3298,7 +3298,7 @@
     },
     {
       "name": "Viburnum davidii",
-      "family": "",
+      "family": "Viburnaceae",
       "plantings": [
         {
           "source": "Woodbridge",
@@ -3311,7 +3311,7 @@
     },
     {
       "name": "Viola \"Baby Blue\"",
-      "family": "",
+      "family": "Violaceae",
       "plantings": [
         {
           "source": "Murphy's Orbost",
@@ -3324,7 +3324,7 @@
     },
     {
       "name": "Zenobia pulverulenta",
-      "family": "",
+      "family": "Ericaceae",
       "plantings": [
         {
           "source": "",
@@ -3337,7 +3337,7 @@
     },
     {
       "name": "Zephyranthes citrina",
-      "family": "",
+      "family": "Amaryllidaceae",
       "plantings": [
         {
           "source": "Balberra Gardens",
@@ -3350,7 +3350,7 @@
     },
     {
       "name": "Zephyranthes primulina",
-      "family": "",
+      "family": "Amaryllidaceae",
       "plantings": [
         {
           "source": "Lynwood Garden",
