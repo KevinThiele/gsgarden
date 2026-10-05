@@ -318,6 +318,7 @@ function openTab(evt, tabName) {
 function matchesSearch(species, query) {
   if (!query) {return true}
   if (species.name.toLowerCase().includes(query)) {return true}
+  if (species.family.toLowerCase().includes(query)) {return true}
   return species.plantings.some(planting => (planting.source ?? "").toLowerCase().includes(query))
 }
 
