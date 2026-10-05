@@ -1456,7 +1456,7 @@
     },
     {
       "name": "Geranium yeoi",
-      "family": "Geraniaceae"
+      "family": "Geraniaceae",
       "plantings": [
         {
           "source": "Jenny",
