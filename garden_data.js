@@ -1,5 +1,5 @@
 {
-  "lastModified": 1791167089581,
+  "lastModified": 1791167164083,
   "data": [
     {
       "name": "Achillea \"Moonshine\"",
@@ -55,7 +55,7 @@
     },
     {
       "name": "Agastache",
-      "family": "",
+      "family": "Lamiaceae",
       "plantings": [
         {
           "source": "",
@@ -68,7 +68,7 @@
     },
     {
       "name": "Agastache x hybrida \"Arizona Sun\"",
-      "family": "",
+      "family": "Lamiaceae",
       "plantings": [
         {
           "source": "Bull Botanics Bairnsdale",
@@ -81,7 +81,7 @@
     },
     {
       "name": "Ajuga reptans Catlins Giant",
-      "family": "",
+      "family": "Lamiaceae",
       "plantings": [
         {
           "source": "Heritage Nursery Yarralumla",
