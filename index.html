@@ -314,7 +314,7 @@ function openTab(evt, tabName) {
   }
 }
  
-//search matches the plant name or any of its plantings' sources, ignoring case
+//search matches the plant name or family or any of its plantings' sources, ignoring case
 function matchesSearch(species, query) {
   if (!query) {return true}
   if (species.name.toLowerCase().includes(query)) {return true}
@@ -922,7 +922,7 @@ function addSpecies() {
 <div id="saveStatus"></div>
 
 <div id="searchRow">
-  <input type="search" id="searchBox" placeholder="Search plants or sources" oninput="populateList()" autocomplete="off">
+  <input type="search" id="searchBox" placeholder="Search plants, families or sources" oninput="populateList()" autocomplete="off">
   <button class="button" type="button" onclick="clearSearch()">Clear</button>
 </div>
 
