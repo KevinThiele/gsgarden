@@ -361,7 +361,7 @@ function populateList() {
 	content = content + '<p><button class="button" type="button" onclick="addNewPlanting(' + s + ')">Add new planting</button></div></div>'
   }
 
-  let header = '<p><button class="button" type="button" onclick="showDialogAddNewSpecies()">Add new species or variety</button>&nbsp;&nbsp;&nbsp;<button class="button" type="button" onClick="saveClicked()">Save</button><p>'
+  let header = '<button class="button" type="button" onclick="showDialogAddNewSpecies()">Add new species or variety</button>&nbsp;&nbsp;&nbsp;<button class="button" type="button" onClick="saveClicked()">Save</button>'
   if (query) {
     header = header + '<div class="searchSummary">' + (shown ? 'Showing ' + shown + ' of ' + gardenData.length + ' plants' : 'No plants match "' + escapeHtml(query) + '"') + '</div>'
   }
