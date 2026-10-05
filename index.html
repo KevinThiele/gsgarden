@@ -378,19 +378,23 @@ function showDialogAddNewSpecies() {
 
 function showDialogEditName(s) {
   document.getElementById("editSpeciesName").value = gardenData[s].name
+  document.getElementById("editSpeciesFamily").value = gardenData[s].family
   dialogEditSpecies.showModal()
   speciesToEditIndex = s
 }
 
 function editName() {
   let newName = document.getElementById("editSpeciesName").value.trim()
+  let newFamily = document.getElementById("editSpeciesFamily").value.trim()	
   if (!newName) {
     window.alert("Please enter a name.")
     return
   }
   let oldName = gardenData[speciesToEditIndex].name
+  let oldFDamily = gardenData[speciesToEditIndex].family
   if (openSpecies.delete(oldName)) {openSpecies.add(newName)}
   gardenData[speciesToEditIndex].name = newName
+  gardenData[speciesToEditIndex].family = newFamily
   markUnsaved()
   populateList()
   dialogEditSpecies.close()
@@ -867,6 +871,7 @@ function addSpecies() {
   <form method="dialog">
     <div style="padding-bottom:15px; display: flex; justify-content: center;"> Edit name of this species or variety</div>
     <input type="text" class = "dialogField" id="editSpeciesName" style="width: 300px" placeholder="Species or variety" required><br><br>
+	<input type="text" class = "dialogField" id="editSpeciesFamily" style="width: 300px" placeholder="Family" required><br><br>
     <div style="display: flex; justify-content: center">
 	<button class="button" type="button" onclick="editName()">Rename</button>&nbsp;&nbsp;
     <button class="button" type="button" onclick="dialogEditSpecies.close()">Cancel</button>
