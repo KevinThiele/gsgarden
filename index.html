@@ -67,7 +67,7 @@ i {
   to {opacity: 1;}
 }
 
-.plantings {
+.plantings, .family {
   padding-left:35px;
 }
 
@@ -534,7 +534,7 @@ function openRecord(element, s) {
   }
 
   for (let c=0; c<children.length; c++) {
-    if (children[c].className === "plantings") {
+    if (children[c].className === "plantings"  || children[c].className === "family") {
       children[c].style = isOpening ? "display: block" : "display: none"
     }
   }
