@@ -3,6 +3,7 @@
   "data": [
     {
       "name": "Achillea \"Moonshine\"",
+      "family":"",
       "plantings": [
         {
           "source": "Original",
@@ -15,6 +16,7 @@
     },
     {
       "name": "Achillea \"Pink Pearl\"",
+      "family":"",
       "plantings": [
         {
           "source": "Woodbridge",
@@ -27,6 +29,7 @@
     },
     {
       "name": "Aconitum napellus",
+      "family":"",
       "plantings": [
         {
           "source": "Woodbridge",
@@ -39,6 +42,7 @@
     },
     {
       "name": "Actaea racemosa atropurpurea",
+      "family":"",
       "plantings": [
         {
           "source": "Heritage Nursery Yarralumla",
@@ -51,6 +55,7 @@
     },
     {
       "name": "Agastache",
+      "family":"",
       "plantings": [
         {
           "source": "",
@@ -63,6 +68,7 @@
     },
     {
       "name": "Agastache x hybrida \"Arizona Sun\"",
+      "family":"",
       "plantings": [
         {
           "source": "Bull Botanics Bairnsdale",
@@ -75,6 +81,7 @@
     },
     {
       "name": "Ajuga reptans Catlins Giant",
+      "family":"",
       "plantings": [
         {
           "source": "Heritage Nursery Yarralumla",
@@ -94,6 +101,7 @@
     },
     {
       "name": "Alchemilla erythropoda",
+      "family":"",
       "plantings": [
         {
           "source": "Bull Botanics Bairnsdale",
@@ -106,6 +114,7 @@
     },
     {
       "name": "Alchemilla rothii",
+      "family":"",
       "plantings": [
         {
           "source": "Woodbridge",
@@ -125,6 +134,7 @@
     },
     {
       "name": "Allium",
+      "family":"",
       "plantings": [
         {
           "source": "",
@@ -137,6 +147,7 @@
     },
     {
       "name": "Alyssum saxatile",
+      "family":"",
       "plantings": [
         {
           "source": "Cooma Mitre10 Garden Centre",
@@ -149,6 +160,7 @@
     },
     {
       "name": "Amorphophallus konjuc",
+      "family":"",
       "plantings": [
         {
           "source": "Murphy's Orbost",
@@ -161,6 +173,7 @@
     },
     {
       "name": "Anemone \"Elfin Swan\"",
+      "family":"",
       "plantings": [
         {
           "source": "Heritage Nursery Yarralumla",
@@ -173,6 +186,7 @@
     },
     {
       "name": "Anemone coronaria \"De Caen Pink\"",
+      "family":"",
       "plantings": [
         {
           "source": "Yarra Valley Bulbs",
@@ -185,6 +199,7 @@
     },
     {
       "name": "Anemone sylvestris",
+      "family":"",
       "plantings": [
         {
           "source": "",
@@ -204,6 +219,7 @@
     },
     {
       "name": "Anemone x hybrida \"Honorine Jobert\"",
+      "family":"",
       "plantings": [
         {
           "source": "Woodbridge",
@@ -216,6 +232,7 @@
     },
     {
       "name": "Angelica pachycarpa",
+      "family":"",
       "plantings": [
         {
           "source": "",
@@ -228,6 +245,7 @@
     },
     {
       "name": "Angelonia angustifolia \"Serenita Sky Blue\"",
+      "family":"",
       "plantings": [
         {
           "source": "Bunnings",
@@ -240,6 +258,7 @@
     },
     {
       "name": "Anisodontea ‘African Rose Mirembe’",
+      "family":"",
       "plantings": [
         {
           "source": "",
@@ -252,6 +271,7 @@
     },
     {
       "name": "Anthemis punctata subsp. cupiana",
+      "family":"",
       "plantings": [
         {
           "source": "Woodbridge",
@@ -264,6 +284,7 @@
     },
     {
       "name": "Anthemis tinctoria \"Mrs E.C. Buxton\"",
+      "family":"",
       "plantings": [
         {
           "source": "",
@@ -276,6 +297,7 @@
     },
     {
       "name": "Aquilegia",
+      "family":"",
       "plantings": [
         {
           "source": "",
@@ -288,6 +310,7 @@
     },
     {
       "name": "Aquilegia oxysepala",
+      "family":"",
       "plantings": [
         {
           "source": "",
@@ -300,6 +323,7 @@
     },
     {
       "name": "Aquilegia sibirica",
+      "family":"",
       "plantings": [
         {
           "source": "Bull Botanics Bairnsdale",
@@ -312,6 +336,7 @@
     },
     {
       "name": "Arenaria montana",
+      "family":"",
       "plantings": [
         {
           "source": "",
@@ -324,6 +349,7 @@
     },
     {
       "name": "Artemisia lactiflora \"Guizhou\"",
+      "family":"",
       "plantings": [
         {
           "source": "",
@@ -336,6 +362,7 @@
     },
     {
       "name": "Artemisia pontica",
+      "family":"",
       "plantings": [
         {
           "source": "Woodbridge",
@@ -348,6 +375,7 @@
     },
     {
       "name": "Asarum canadense",
+      "family":"",
       "plantings": [
         {
           "source": "Heritage Nursery Yarralumla",
@@ -360,6 +388,7 @@
     },
     {
       "name": "Aster",
+      "family":"",
       "plantings": [
         {
           "source": "Ornge?",
@@ -372,6 +401,7 @@
     },
     {
       "name": "Astilbe (hybrid, pink)",
+      "family":"",
       "plantings": [
         {
           "source": "Bull Botanics Bairnsdale",
@@ -384,6 +414,7 @@
     },
     {
       "name": "Astrantia \"Wol\"s Best Red\"",
+      "family":"",
       "plantings": [
         {
           "source": "",
@@ -396,6 +427,7 @@
     },
     {
       "name": "Azorella pedunculata",
+      "family":"",
       "plantings": [
         {
           "source": "Antique Perennials",
@@ -408,6 +440,7 @@
     },
     {
       "name": "Bergenia cordifolia",
+      "family":"",
       "plantings": [
         {
           "source": "",
@@ -420,6 +453,7 @@
     },
     {
       "name": "Bergenia-like",
+      "family":"",
       "plantings": [
         {
           "source": "",
@@ -432,6 +466,7 @@
     },
     {
       "name": "Betonica officinalis \"Hummelo\"",
+      "family":"",
       "plantings": [
         {
           "source": "New Wave Perennials",
@@ -444,6 +479,7 @@
     },
     {
       "name": "Betula pendula \"Moss White\"",
+      "family":"",
       "plantings": [
         {
           "source": "Heritage Nursery Yarralumla",
@@ -484,6 +520,7 @@
     },
     {
       "name": "Brillantaisia cicatricosa",
+      "family":"",
       "plantings": [
         {
           "source": "Original",
@@ -496,6 +533,7 @@
     },
     {
       "name": "Brunnera macrophylla",
+      "family":"",
       "plantings": [
         {
           "source": "Dickson Nursery",
@@ -508,6 +546,7 @@
     },
     {
       "name": "Bystropogon canariensis",
+      "family":"",
       "plantings": [
         {
           "source": "New Wave Perennials",
@@ -520,6 +559,7 @@
     },
     {
       "name": "Calathea vittata",
+      "family":"",
       "plantings": [
         {
           "source": "Sai Nursery Sydney",
@@ -532,6 +572,7 @@
     },
     {
       "name": "Camella sasanqua \"Early Pearly\"",
+      "family":"",
       "plantings": [
         {
           "source": "",
@@ -544,6 +585,7 @@
     },
     {
       "name": "Camellia transnokoyensis",
+      "family":"",
       "plantings": [
         {
           "source": "",
@@ -556,6 +598,7 @@
     },
     {
       "name": "Camellia vernalis \"Yuletide\"",
+      "family":"",
       "plantings": [
         {
           "source": "Heritage Nursery Yarralumla",
@@ -568,6 +611,7 @@
     },
     {
       "name": "Campanula glomerata \"Genti Blue\"",
+      "family":"",
       "plantings": [
         {
           "source": "Dickson Nursery",
@@ -580,6 +624,7 @@
     },
     {
       "name": "Campanula lactiflora",
+      "family":"",
       "plantings": [
         {
           "source": "Lambley",
@@ -599,6 +644,7 @@
     },
     {
       "name": "Campanula muralis",
+      "family":"",
       "plantings": [
         {
           "source": "Woodbridge",
@@ -611,6 +657,7 @@
     },
     {
       "name": "Campanula portenschlagiana",
+      "family":"",
       "plantings": [
         {
           "source": "Perennialle Plants Canowindra",
@@ -623,6 +670,7 @@
     },
     {
       "name": "Campanula poscharskyana",
+      "family":"",
       "plantings": [
         {
           "source": "Old Parliament Hourse Gardens",
@@ -635,6 +683,7 @@
     },
     {
       "name": "Campanula punctata",
+      "family":"",
       "plantings": [
         {
           "source": "Woodbridge",
@@ -654,6 +703,7 @@
     },
     {
       "name": "Caryopteris x clandonensis",
+      "family":"",
       "plantings": [
         {
           "source": "",
@@ -666,6 +716,7 @@
     },
     {
       "name": "Chaenostoma cordatum (Sutera cordata)",
+      "family":"",
       "plantings": [
         {
           "source": "",
@@ -678,6 +729,7 @@
     },
     {
       "name": "Cissus rhombifolia \"Ellen Danica\"",
+      "family":"",
       "plantings": [
         {
           "source": "Bonnyrigg Garden Centre Sydney",
@@ -687,6 +739,7 @@
     },
     {
       "name": "Cistus ladanifer",
+      "family":"",
       "plantings": [
         {
           "source": "Dickson Nursery",
@@ -699,6 +752,7 @@
     },
     {
       "name": "Cistus salvifolius \"Prostrate\"",
+      "family":"",
       "plantings": [
         {
           "source": "Woodbridge",
@@ -711,6 +765,7 @@
     },
     {
       "name": "Cistus x lenis \"Grayswood Pink\"",
+      "family":"",
       "plantings": [
         {
           "source": "",
@@ -723,6 +778,7 @@
     },
     {
       "name": "Clematis napaulensis",
+      "family":"",
       "plantings": [
         {
           "source": "Heritage Nursery Yarralumla",
@@ -735,6 +791,7 @@
     },
     {
       "name": "Clematis tangutica",
+      "family":"",
       "plantings": [
         {
           "source": "",
@@ -747,6 +804,7 @@
     },
     {
       "name": "Colchicum byzantinum",
+      "family":"",
       "plantings": [
         {
           "source": "Hancocks",
@@ -759,6 +817,7 @@
     },
     {
       "name": "Coreopsis verticillata \"Moonbeam\"",
+      "family":"",
       "plantings": [
         {
           "source": "Woodbridge",
@@ -771,6 +830,7 @@
     },
     {
       "name": "Corylopsis sinensis",
+      "family":"",
       "plantings": [
         {
           "source": "Heritage Nursery Yarralumla",
@@ -783,6 +843,7 @@
     },
     {
       "name": "Corylus avellana 'Contorta'",
+      "family":"",
       "plantings": [
         {
           "source": "",
@@ -795,6 +856,7 @@
     },
     {
       "name": "Cosmos atrosanguinea",
+      "family":"",
       "plantings": [
         {
           "source": "Woodbridge",
@@ -814,6 +876,7 @@
     },
     {
       "name": "Crocus sativus",
+      "family":"",
       "plantings": [
         {
           "source": "Yarra Valley Bulbs",
@@ -826,6 +889,7 @@
     },
     {
       "name": "Cyclamen coum",
+      "family":"",
       "plantings": [
         {
           "source": "Hancocks",
@@ -838,6 +902,7 @@
     },
     {
       "name": "Cyrtanthus elatus",
+      "family":"",
       "plantings": [
         {
           "source": "From Orbost local",
@@ -850,6 +915,7 @@
     },
     {
       "name": "Dahlia coccinea",
+      "family":"",
       "plantings": [
         {
           "source": "Woodbridge",
@@ -862,6 +928,7 @@
     },
     {
       "name": "Dahlia merckii",
+      "family":"",
       "plantings": [
         {
           "source": "New Wave Perennials",
@@ -874,6 +941,7 @@
     },
     {
       "name": "Dahlia yellow",
+      "family":"",
       "plantings": [
         {
           "source": "Murphy's Orbost",
@@ -886,6 +954,7 @@
     },
     {
       "name": "Daphne bholua",
+      "family":"",
       "plantings": [
         {
           "source": "Heritage Nursery Yarralumla",
@@ -898,6 +967,7 @@
     },
     {
       "name": "Daphne odora",
+      "family":"",
       "plantings": [
         {
           "source": "Bonnyrigg Garden Centre Sydney",
@@ -910,6 +980,7 @@
     },
     {
       "name": "Daphne odora x bholua \"Perfume Princess\"",
+      "family":"",
       "plantings": [
         {
           "source": "Heritage Nursery Yarralumla",
@@ -922,6 +993,7 @@
     },
     {
       "name": "Delphinium \"Blue Bird\"",
+      "family":"",
       "plantings": [
         {
           "source": "Woodbridge",
@@ -934,6 +1006,7 @@
     },
     {
       "name": "Delphinium grandiflorum \"Hunky Dory\"",
+      "family":"",
       "plantings": [
         {
           "source": "Bonnyrigg Garden Centre Sydney",
@@ -946,6 +1019,7 @@
     },
     {
       "name": "Delphinium grandiflorum \"Little White Butterfly\"",
+      "family":"",
       "plantings": [
         {
           "source": "Bunnings",
@@ -958,6 +1032,7 @@
     },
     {
       "name": "Dichroa febrifuga",
+      "family":"",
       "plantings": [
         {
           "source": "Dickson Nursery",
@@ -970,6 +1045,7 @@
     },
     {
       "name": "Digitalis",
+      "family":"",
       "plantings": [
         {
           "source": "Bull Botanics Bairnsdale",
@@ -982,6 +1058,7 @@
     },
     {
       "name": "Digitalis \"White Cloud\"",
+      "family":"",
       "plantings": [
         {
           "source": "Bonnyrigg Garden Centre Sydney",
@@ -994,6 +1071,7 @@
     },
     {
       "name": "Digitalis mertonensis",
+      "family":"",
       "plantings": [
         {
           "source": "Woodbridge",
@@ -1013,6 +1091,7 @@
     },
     {
       "name": "Digitalis parvifolia",
+      "family":"",
       "plantings": [
         {
           "source": "Perennialle Plants Canowindra",
@@ -1025,6 +1104,7 @@
     },
     {
       "name": "Digitalis purpurea",
+      "family":"",
       "plantings": [
         {
           "source": "Mittagong Garden Centre",
@@ -1037,6 +1117,7 @@
     },
     {
       "name": "Disporopsis perneyi",
+      "family":"",
       "plantings": [
         {
           "source": "Yellow House Heritage Perennials",
@@ -1049,6 +1130,7 @@
     },
     {
       "name": "Doronicum caucasicum",
+      "family":"",
       "plantings": [
         {
           "source": "Woodbridge",
@@ -1061,6 +1143,7 @@
     },
     {
       "name": "Doronicum orientale \"Magnificum\"",
+      "family":"",
       "plantings": [
         {
           "source": "Lambley",
@@ -1073,6 +1156,7 @@
     },
     {
       "name": "Echinacea paradoxa var. paradoxa",
+      "family":"",
       "plantings": [
         {
           "source": "Woodside Plants & Design",
@@ -1085,6 +1169,7 @@
     },
     {
       "name": "Echinacea purpurea",
+      "family":"",
       "plantings": [
         {
           "source": "Heritage Nursery Yarralumla",
@@ -1097,6 +1182,7 @@
     },
     {
       "name": "Echinops ritro \"Vietch's Blue\"",
+      "family":"",
       "plantings": [
         {
           "source": "Woodbridge",
@@ -1109,6 +1195,7 @@
     },
     {
       "name": "Echinops sphaerocephalus?",
+      "family":"",
       "plantings": [
         {
           "source": "",
@@ -1121,6 +1208,7 @@
     },
     {
       "name": "Edgeworthia papyrifera",
+      "family":"",
       "plantings": [
         {
           "source": "",
@@ -1133,6 +1221,7 @@
     },
     {
       "name": "Epimedium",
+      "family":"",
       "plantings": [
         {
           "source": "Martins Creek",
@@ -1145,6 +1234,7 @@
     },
     {
       "name": "Epimedium wushanense",
+      "family":"",
       "plantings": [
         {
           "source": "Heritage Nursery Yarralumla",
@@ -1157,6 +1247,7 @@
     },
     {
       "name": "Erigeron glaucus \"Seabreeze\"",
+      "family":"",
       "plantings": [
         {
           "source": "Lambley",
@@ -1169,6 +1260,7 @@
     },
     {
       "name": "Eryngium",
+      "family":"",
       "plantings": [
         {
           "source": "",
@@ -1181,6 +1273,7 @@
     },
     {
       "name": "Eryngium agavifolium",
+      "family":"",
       "plantings": [
         {
           "source": "Antique Perennials",
@@ -1193,6 +1286,7 @@
     },
     {
       "name": "Eryngium foetidum",
+      "family":"",
       "plantings": [
         {
           "source": "Sai Nursery Sydney",
@@ -1202,6 +1296,7 @@
     },
     {
       "name": "Eryngium planum \"Blaukappe\"",
+      "family":"",
       "plantings": [
         {
           "source": "Woodbridge",
@@ -1214,6 +1309,7 @@
     },
     {
       "name": "Erysimum",
+      "family":"",
       "plantings": [
         {
           "source": "Original",
@@ -1233,6 +1329,7 @@
     },
     {
       "name": "Euryops pectinata \"Elite Little Sunray\"",
+      "family":"",
       "plantings": [
         {
           "source": "Heritage Nursery Yarralumla",
@@ -1242,6 +1339,7 @@
     },
     {
       "name": "Filipendula",
+      "family":"",
       "plantings": [
         {
           "source": "",
@@ -1254,6 +1352,7 @@
     },
     {
       "name": "Filipendula camtschatica",
+      "family":"",
       "plantings": [
         {
           "source": "Woodbridge",
@@ -1266,6 +1365,7 @@
     },
     {
       "name": "Fragaria vesca",
+      "family":"",
       "plantings": [
         {
           "source": "Boundy Road garden",
@@ -1278,6 +1378,7 @@
     },
     {
       "name": "Gardenia jasminoides \"Tinkerbell\"",
+      "family":"",
       "plantings": [
         {
           "source": "Bull Botanics Bairnsdale",
@@ -1290,6 +1391,7 @@
     },
     {
       "name": "Geranium",
+      "family":"",
       "plantings": [
         {
           "source": "Original",
@@ -1302,6 +1404,7 @@
     },
     {
       "name": "Geranium",
+      "family":"",
       "plantings": [
         {
           "source": "Transplant",
@@ -1314,6 +1417,7 @@
     },
     {
       "name": "Geranium macrorrhizum",
+      "family":"",
       "plantings": [
         {
           "source": "Antique Perennials",
@@ -1326,6 +1430,7 @@
     },
     {
       "name": "Geranium maderense",
+      "family":"",
       "plantings": [
         {
           "source": "",
@@ -1338,6 +1443,7 @@
     },
     {
       "name": "Geranium palmense",
+      "family":"",
       "plantings": [
         {
           "source": "Seeds",
@@ -1350,6 +1456,7 @@
     },
     {
       "name": "Gerbera",
+      "family":"",
       "plantings": [
         {
           "source": "",
@@ -1362,6 +1469,7 @@
     },
     {
       "name": "Geum",
+      "family":"",
       "plantings": [
         {
           "source": "",
@@ -1374,6 +1482,7 @@
     },
     {
       "name": "Geum \"Mrs Bradshaw\"",
+      "family":"",
       "plantings": [
         {
           "source": "Bunnings",
@@ -1386,6 +1495,7 @@
     },
     {
       "name": "Geum coccineum \"Red Wings\"",
+      "family":"",
       "plantings": [
         {
           "source": "Woodbridge",
@@ -1398,6 +1508,7 @@
     },
     {
       "name": "Geum?",
+      "family":"",
       "plantings": [
         {
           "source": "",
@@ -1410,6 +1521,7 @@
     },
     {
       "name": "Gypsophila muralis (pink)",
+      "family":"",
       "plantings": [
         {
           "source": "Bunnings",
@@ -1422,6 +1534,7 @@
     },
     {
       "name": "Gypsophila muralis (white)",
+      "family":"",
       "plantings": [
         {
           "source": "Newmerella Nursery",
@@ -1434,6 +1547,7 @@
     },
     {
       "name": "Hamamelis x intermedia’Pallida’",
+      "family":"",
       "plantings": [
         {
           "source": "Heritage Nursery Yarralumla",
@@ -1446,6 +1560,7 @@
     },
     {
       "name": "Helenium \"Dark Beauty\"",
+      "family":"",
       "plantings": [
         {
           "source": "Woodbridge",
@@ -1458,6 +1573,7 @@
     },
     {
       "name": "Helianthemum",
+      "family":"",
       "plantings": [
         {
           "source": "Woodbridge",
@@ -1470,6 +1586,7 @@
     },
     {
       "name": "Helleborus orientalis",
+      "family":"",
       "plantings": [
         {
           "source": "Original",
@@ -1482,6 +1599,7 @@
     },
     {
       "name": "Heterocentron elegans",
+      "family":"",
       "plantings": [
         {
           "source": "Bonnyrigg Garden Centre Sydney",
@@ -1494,6 +1612,7 @@
     },
     {
       "name": "Heuchera  sanguinea",
+      "family":"",
       "plantings": [
         {
           "source": "Newmerella Nursery",
@@ -1506,6 +1625,7 @@
     },
     {
       "name": "Heuchera \"Black Taffeta\"",
+      "family":"",
       "plantings": [
         {
           "source": "from Jennie",
@@ -1518,6 +1638,7 @@
     },
     {
       "name": "Heuchera \"Fire Alarm\"",
+      "family":"",
       "plantings": [
         {
           "source": "from Jennie",
@@ -1530,6 +1651,7 @@
     },
     {
       "name": "Heuchera maxima",
+      "family":"",
       "plantings": [
         {
           "source": "Bull Botanics Bairnsdale",
@@ -1542,6 +1664,7 @@
     },
     {
       "name": "Hosta venusta",
+      "family":"",
       "plantings": [
         {
           "source": "Heritage Nursery Yarralumla",
@@ -1554,6 +1677,7 @@
     },
     {
       "name": "Houttuynia cordata",
+      "family":"",
       "plantings": [
         {
           "source": "Red Cow Farm",
@@ -1566,6 +1690,7 @@
     },
     {
       "name": "Hydrangea longifolia",
+      "family":"",
       "plantings": [
         {
           "source": "Dickson Nursery",
@@ -1578,6 +1703,7 @@
     },
     {
       "name": "Hydrangea macrophylla",
+      "family":"",
       "plantings": [
         {
           "source": "Red Cow Farm",
@@ -1590,6 +1716,7 @@
     },
     {
       "name": "Hydrangea quercifolia",
+      "family":"",
       "plantings": [
         {
           "source": "",
@@ -1602,6 +1729,7 @@
     },
     {
       "name": "Iris \"Alaska\"",
+      "family":"",
       "plantings": [
         {
           "source": "Yarra Valley Bulbs",
@@ -1614,6 +1742,7 @@
     },
     {
       "name": "Iris \"Telstar\"",
+      "family":"",
       "plantings": [
         {
           "source": "",
@@ -1633,6 +1762,7 @@
     },
     {
       "name": "Iris japonica",
+      "family":"",
       "plantings": [
         {
           "source": "Woodbridge",
@@ -1645,6 +1775,7 @@
     },
     {
       "name": "Lathyrus latifolius",
+      "family":"",
       "plantings": [
         {
           "source": "Martins Creek",
@@ -1657,6 +1788,7 @@
     },
     {
       "name": "Lavandula",
+      "family":"",
       "plantings": [
         {
           "source": "Transplant",
@@ -1669,6 +1801,7 @@
     },
     {
       "name": "Leucanthemum x superbum",
+      "family":"",
       "plantings": [
         {
           "source": "Old Parliament House Gardens",
@@ -1681,6 +1814,7 @@
     },
     {
       "name": "Leucanthemum x superbum \"Sunshine\"",
+      "family":"",
       "plantings": [
         {
           "source": "Woodbridge",
@@ -1693,6 +1827,7 @@
     },
     {
       "name": "Liatris spicata \"Blazing Star\"",
+      "family":"",
       "plantings": [
         {
           "source": "Diggers",
@@ -1705,6 +1840,7 @@
     },
     {
       "name": "Ligularia dentata \"Midnight Lady\"",
+      "family":"",
       "plantings": [
         {
           "source": "Dickson Nursery",
@@ -1717,6 +1853,7 @@
     },
     {
       "name": "Ligularia dentata \"Pandora\"",
+      "family":"",
       "plantings": [
         {
           "source": "Bonnyrigg Garden Centre Sydney",
@@ -1729,6 +1866,7 @@
     },
     {
       "name": "Ligularia reniformis",
+      "family":"",
       "plantings": [
         {
           "source": "Bunnings",
@@ -1741,6 +1879,7 @@
     },
     {
       "name": "Lilium formosanum",
+      "family":"",
       "plantings": [
         {
           "source": "From the wild",
@@ -1753,6 +1892,7 @@
     },
     {
       "name": "Lilium longiflorum",
+      "family":"",
       "plantings": [
         {
           "source": "From Lem",
@@ -1765,6 +1905,7 @@
     },
     {
       "name": "Lindelofia longiflora",
+      "family":"",
       "plantings": [
         {
           "source": "Antique Perennials",
@@ -1777,6 +1918,7 @@
     },
     {
       "name": "Lindera obtusiloba",
+      "family":"",
       "plantings": [
         {
           "source": "Dickson Nursery",
@@ -1789,6 +1931,7 @@
     },
     {
       "name": "Loropetalum chinense \"Plum Gorgeous\"",
+      "family":"",
       "plantings": [
         {
           "source": "Heritage Nursery Yarralumla",
@@ -1801,6 +1944,7 @@
     },
     {
       "name": "Luculia pinceana",
+      "family":"",
       "plantings": [
         {
           "source": "Original",
@@ -1813,6 +1957,7 @@
     },
     {
       "name": "Lychnis flos-cuculi",
+      "family":"",
       "plantings": [
         {
           "source": "Newmerella Nursery",
@@ -1825,6 +1970,7 @@
     },
     {
       "name": "Lycoris",
+      "family":"",
       "plantings": [
         {
           "source": "From Harry near Jan Read's place",
@@ -1837,6 +1983,7 @@
     },
     {
       "name": "Macleaya cordata",
+      "family":"",
       "plantings": [
         {
           "source": "Red Cow Farm",
@@ -1849,6 +1996,7 @@
     },
     {
       "name": "Magnolia stellata",
+      "family":"",
       "plantings": [
         {
           "source": "",
@@ -1861,6 +2009,7 @@
     },
     {
       "name": "Malus ioensis \"Flore plena\"",
+      "family":"",
       "plantings": [
         {
           "source": "Heritage Nursery Yarralumla",
@@ -1873,6 +2022,7 @@
     },
     {
       "name": "Mandevilla diamanthina \"Agathe White\"",
+      "family":"",
       "plantings": [
         {
           "source": "Bull Botanics Bairnsdale",
@@ -1885,6 +2035,7 @@
     },
     {
       "name": "Mentha pulegium",
+      "family":"",
       "plantings": [
         {
           "source": "Original",
@@ -1897,6 +2048,7 @@
     },
     {
       "name": "Michelia figo",
+      "family":"",
       "plantings": [
         {
           "source": "Original",
@@ -1909,6 +2061,7 @@
     },
     {
       "name": "Michelia yunnanense",
+      "family":"",
       "plantings": [
         {
           "source": "Dickson Nursery",
@@ -1921,6 +2074,7 @@
     },
     {
       "name": "Monarda ‘Gardenview Scarlet’",
+      "family":"",
       "plantings": [
         {
           "source": "Bull Botanicals",
@@ -1933,6 +2087,7 @@
     },
     {
       "name": "Muscari",
+      "family":"",
       "plantings": [
         {
           "source": "Yarra Valley Bulbs",
@@ -1945,6 +2100,7 @@
     },
     {
       "name": "Myosotis \"Compindie\"",
+      "family":"",
       "plantings": [
         {
           "source": "Cooma Mitre10 Garden Centre",
@@ -1954,6 +2110,7 @@
     },
     {
       "name": "Myosotis \"Snowsilva\"",
+      "family":"",
       "plantings": [
         {
           "source": "Cooma Mitre10 Garden Centre",
@@ -1966,6 +2123,7 @@
     },
     {
       "name": "Narcissus \"Silver Chimes\"",
+      "family":"",
       "plantings": [
         {
           "source": "Yarra Valley Bulbs",
@@ -1978,6 +2136,7 @@
     },
     {
       "name": "Narcissus tazetta \"Avalanche\"",
+      "family":"",
       "plantings": [
         {
           "source": "Hancocks",
@@ -1990,6 +2149,7 @@
     },
     {
       "name": "Nepeta tuberosa",
+      "family":"",
       "plantings": [
         {
           "source": "Perennialle Plants Canowindra",
@@ -2002,6 +2162,7 @@
     },
     {
       "name": "Nepeta x faassenii \"Dropmore\"",
+      "family":"",
       "plantings": [
         {
           "source": "Lambley",
@@ -2021,6 +2182,7 @@
     },
     {
       "name": "Omphalodes cappadocica \"Cherry Ingram\"",
+      "family":"",
       "plantings": [
         {
           "source": "Red Cow Farm",
@@ -2033,6 +2195,7 @@
     },
     {
       "name": "Origanum rotundifolium \"Kent Beauty\"",
+      "family":"",
       "plantings": [
         {
           "source": "Diggers Club",
@@ -2045,6 +2208,7 @@
     },
     {
       "name": "Osmanthus rotundifolius ",
+      "family":"",
       "plantings": [
         {
           "source": "Original",
@@ -2057,6 +2221,7 @@
     },
     {
       "name": "Osmanthus x fortunei",
+      "family":"",
       "plantings": [
         {
           "source": "Original",
@@ -2069,6 +2234,7 @@
     },
     {
       "name": "Pachyphragma macrophylla",
+      "family":"",
       "plantings": [
         {
           "source": "Heritage Nursery Yarralumla",
@@ -2081,6 +2247,7 @@
     },
     {
       "name": "Pachysandra terminalis",
+      "family":"",
       "plantings": [
         {
           "source": "Woodbridge",
@@ -2093,6 +2260,7 @@
     },
     {
       "name": "Paeonia suffruticosa",
+      "family":"",
       "plantings": [
         {
           "source": "",
@@ -2105,6 +2273,7 @@
     },
     {
       "name": "Paeonia suffruticosa \"Taiyo\"",
+      "family":"",
       "plantings": [
         {
           "source": "Heritage Nursery Yarralumla",
@@ -2117,6 +2286,7 @@
     },
     {
       "name": "Parrotiopsis jacquemontiana ",
+      "family":"",
       "plantings": [
         {
           "source": "Heritage Nursery Yarralumla",
@@ -2129,6 +2299,7 @@
     },
     {
       "name": "Pelargonium",
+      "family":"",
       "plantings": [
         {
           "source": "Original",
@@ -2141,6 +2312,7 @@
     },
     {
       "name": "Penstemon \"Electric Blue\"",
+      "family":"",
       "plantings": [
         {
           "source": "Heritage Nursery Yarralumla",
@@ -2153,6 +2325,7 @@
     },
     {
       "name": "Pentas lanceolata",
+      "family":"",
       "plantings": [
         {
           "source": "Bunnings",
@@ -2165,6 +2338,7 @@
     },
     {
       "name": "Peperomia polybotrya",
+      "family":"",
       "plantings": [
         {
           "source": "Bonnyrigg Garden Centre Sydney",
@@ -2177,6 +2351,7 @@
     },
     {
       "name": "Persicaria \"Lance Corporal\"",
+      "family":"",
       "plantings": [
         {
           "source": "Heritage Nursery Yarralumla",
@@ -2189,6 +2364,7 @@
     },
     {
       "name": "Philadelphus",
+      "family":"",
       "plantings": [
         {
           "source": "Original",
@@ -2201,6 +2377,7 @@
     },
     {
       "name": "Phlomis floccosa",
+      "family":"",
       "plantings": [
         {
           "source": "Original",
@@ -2220,6 +2397,7 @@
     },
     {
       "name": "Phlomis russeliana",
+      "family":"",
       "plantings": [
         {
           "source": "Antique Perennials",
@@ -2232,6 +2410,7 @@
     },
     {
       "name": "Phlomis samia",
+      "family":"",
       "plantings": [
         {
           "source": "Original",
@@ -2244,6 +2423,7 @@
     },
     {
       "name": "Phlomis tuberosa",
+      "family":"",
       "plantings": [
         {
           "source": "Heritage Nursery Yarralumla",
@@ -2256,6 +2436,7 @@
     },
     {
       "name": "Phlox?",
+      "family":"",
       "plantings": [
         {
           "source": "",
@@ -2268,6 +2449,7 @@
     },
     {
       "name": "Pieris japonica",
+      "family":"",
       "plantings": [
         {
           "source": "Heritage Nursery Yarralumla",
@@ -2280,6 +2462,7 @@
     },
     {
       "name": "Plectranthus purpuratus",
+      "family":"",
       "plantings": [
         {
           "source": "From Helly",
@@ -2292,6 +2475,7 @@
     },
     {
       "name": "Plectranthus saccatus \"Velvet Elvis\"",
+      "family":"",
       "plantings": [
         {
           "source": "Murphy's Orbost",
@@ -2304,6 +2488,7 @@
     },
     {
       "name": "Podophyllum \"Spotty Dotty\"",
+      "family":"",
       "plantings": [
         {
           "source": "Heritage Nursery Yarralumla",
@@ -2316,6 +2501,7 @@
     },
     {
       "name": "Podophyllum pleianthum",
+      "family":"",
       "plantings": [
         {
           "source": "Heritage Nursery Yarralumla",
@@ -2328,6 +2514,7 @@
     },
     {
       "name": "Potentilla atrosanguinea",
+      "family":"",
       "plantings": [
         {
           "source": "Woodbridge",
@@ -2340,6 +2527,7 @@
     },
     {
       "name": "Primula viallii",
+      "family":"",
       "plantings": [
         {
           "source": "Cooma Mitre10 Garden Centre",
@@ -2352,6 +2540,7 @@
     },
     {
       "name": "Pulsatilla vulgaris",
+      "family":"",
       "plantings": [
         {
           "source": "Lynwood Garden",
@@ -2364,6 +2553,7 @@
     },
     {
       "name": "Pyrus nivalis",
+      "family":"",
       "plantings": [
         {
           "source": "",
@@ -2376,6 +2566,7 @@
     },
     {
       "name": "Ratibida columnifera",
+      "family":"",
       "plantings": [
         {
           "source": "New Wave Perennials",
@@ -2388,6 +2579,7 @@
     },
     {
       "name": "Rheum alexandrae",
+      "family":"",
       "plantings": [
         {
           "source": "Lambley",
@@ -2397,6 +2589,7 @@
     },
     {
       "name": "Rhododendron \"Unique\"",
+      "family":"",
       "plantings": [
         {
           "source": "Bull Botanics Bairnsdale",
@@ -2409,6 +2602,7 @@
     },
     {
       "name": "Rhododendron \"Wedding Gown\"",
+      "family":"",
       "plantings": [
         {
           "source": "Bull Botanics Bairnsdale",
@@ -2421,6 +2615,7 @@
     },
     {
       "name": "Rhododendron molle \"Sandpiper\"",
+      "family":"",
       "plantings": [
         {
           "source": "Willow Park Pialligo",
@@ -2433,6 +2628,7 @@
     },
     {
       "name": "Rosa \"Nahema\"",
+      "family":"",
       "plantings": [
         {
           "source": "Heritage Nursery Yarralumla",
@@ -2445,6 +2641,7 @@
     },
     {
       "name": "Rudbeckia fulgida ‘Little Goldstar’",
+      "family":"",
       "plantings": [
         {
           "source": "Woodside Plants & Design",
@@ -2457,6 +2654,7 @@
     },
     {
       "name": "Rudbeckia fulgida var. deamii",
+      "family":"",
       "plantings": [
         {
           "source": "Woodbridge",
@@ -2469,6 +2667,7 @@
     },
     {
       "name": "Rudbeckia maxima",
+      "family":"",
       "plantings": [
         {
           "source": "Perennialle Plants Canowindra",
@@ -2481,6 +2680,7 @@
     },
     {
       "name": "Salvia",
+      "family":"",
       "plantings": [
         {
           "source": "",
@@ -2493,6 +2693,7 @@
     },
     {
       "name": "Salvia",
+      "family":"",
       "plantings": [
         {
           "source": "",
@@ -2505,6 +2706,7 @@
     },
     {
       "name": "Salvia \"Meigan\"s Magic\"",
+      "family":"",
       "plantings": [
         {
           "source": "Original",
@@ -2517,6 +2719,7 @@
     },
     {
       "name": "Salvia \"Waverly\"",
+      "family":"",
       "plantings": [
         {
           "source": "Original",
@@ -2536,6 +2739,7 @@
     },
     {
       "name": "Salvia azurea",
+      "family":"",
       "plantings": [
         {
           "source": "Original",
@@ -2555,6 +2759,7 @@
     },
     {
       "name": "Salvia dorisiana",
+      "family":"",
       "plantings": [
         {
           "source": "",
@@ -2567,6 +2772,7 @@
     },
     {
       "name": "Salvia greggii",
+      "family":"",
       "plantings": [
         {
           "source": "",
@@ -2579,6 +2785,7 @@
     },
     {
       "name": "Salvia involucrata",
+      "family":"",
       "plantings": [
         {
           "source": "",
@@ -2591,6 +2798,7 @@
     },
     {
       "name": "Salvia ionantha",
+      "family":"",
       "plantings": [
         {
           "source": "Original",
@@ -2603,6 +2811,7 @@
     },
     {
       "name": "Salvia lanceolata",
+      "family":"",
       "plantings": [
         {
           "source": "Original",
@@ -2615,6 +2824,7 @@
     },
     {
       "name": "Salvia leucantha",
+      "family":"",
       "plantings": [
         {
           "source": "Original",
@@ -2634,6 +2844,7 @@
     },
     {
       "name": "Salvia macrophylla",
+      "family":"",
       "plantings": [
         {
           "source": "Original",
@@ -2646,6 +2857,7 @@
     },
     {
       "name": "Salvia mexicana \"Limelight\"",
+      "family":"",
       "plantings": [
         {
           "source": "Original",
@@ -2665,6 +2877,7 @@
     },
     {
       "name": "Salvia microphylla",
+      "family":"",
       "plantings": [
         {
           "source": "Original",
@@ -2677,6 +2890,7 @@
     },
     {
       "name": "Salvia semiatrata",
+      "family":"",
       "plantings": [
         {
           "source": "",
@@ -2689,6 +2903,7 @@
     },
     {
       "name": "Salvia wagneriana ",
+      "family":"",
       "plantings": [
         {
           "source": "",
@@ -2701,6 +2916,7 @@
     },
     {
       "name": "Salvia yangii (Perovskia atriplicifolia)",
+      "family":"",
       "plantings": [
         {
           "source": "Diggers",
@@ -2713,6 +2929,7 @@
     },
     {
       "name": "Saxifraga stolonifera",
+      "family":"",
       "plantings": [
         {
           "source": "Cooma Mitre10 Garden Centre",
@@ -2725,6 +2942,7 @@
     },
     {
       "name": "Saxifraga umbrosa",
+      "family":"",
       "plantings": [
         {
           "source": "Woodbridge",
@@ -2737,6 +2955,7 @@
     },
     {
       "name": "Sisyrhynchium idahoensis var. macounii",
+      "family":"",
       "plantings": [
         {
           "source": "Newmerella Nursery",
@@ -2749,6 +2968,7 @@
     },
     {
       "name": "Spathiphyllum wallisii",
+      "family":"",
       "plantings": [
         {
           "source": "Sai Nursery Sydney",
@@ -2761,6 +2981,7 @@
     },
     {
       "name": "Stachys byzantina",
+      "family":"",
       "plantings": [
         {
           "source": "Woodbridge",
@@ -2787,6 +3008,7 @@
     },
     {
       "name": "Stachys byzantina \"Big Ears\"",
+      "family":"",
       "plantings": [
         {
           "source": "From Jan Read",
@@ -2799,6 +3021,7 @@
     },
     {
       "name": "Stachys officinalis \"Summer Snowcone\"",
+      "family":"",
       "plantings": [
         {
           "source": "Newmerella Nursery",
@@ -2818,6 +3041,7 @@
     },
     {
       "name": "Stephenandra tanakae",
+      "family":"",
       "plantings": [
         {
           "source": "Bull Botanics Bairnsdale",
@@ -2830,6 +3054,7 @@
     },
     {
       "name": "Tellima grandiflora",
+      "family":"",
       "plantings": [
         {
           "source": "Heritage Nursery Yarralumla",
@@ -2842,6 +3067,7 @@
     },
     {
       "name": "Teucrium hircanicum",
+      "family":"",
       "plantings": [
         {
           "source": "Woodbridge",
@@ -2854,6 +3080,7 @@
     },
     {
       "name": "Thalictrum delavayi",
+      "family":"",
       "plantings": [
         {
           "source": "From seed",
@@ -2866,6 +3093,7 @@
     },
     {
       "name": "Tolmiea menziesii",
+      "family":"",
       "plantings": [
         {
           "source": "Murphy's Orbost",
@@ -2878,6 +3106,7 @@
     },
     {
       "name": "Trachystemon orientale",
+      "family":"",
       "plantings": [
         {
           "source": "Royal Botanic Garden Melbourne",
@@ -2890,6 +3119,7 @@
     },
     {
       "name": "Trillium",
+      "family":"",
       "plantings": [
         {
           "source": "Red Cow Farm",
@@ -2902,6 +3132,7 @@
     },
     {
       "name": "Uvularia grandiflora",
+      "family":"",
       "plantings": [
         {
           "source": "Heritage Nursery Yarralumla",
@@ -2914,6 +3145,7 @@
     },
     {
       "name": "Vancouveria hexandra",
+      "family":"",
       "plantings": [
         {
           "source": "Cooma Mitre10 Garden Centre",
@@ -2926,6 +3158,7 @@
     },
     {
       "name": "Veltheimia bracteata",
+      "family":"",
       "plantings": [
         {
           "source": "Yarra Valley Bulbs",
@@ -2938,6 +3171,7 @@
     },
     {
       "name": "Veronica",
+      "family":"",
       "plantings": [
         {
           "source": "",
@@ -2950,6 +3184,7 @@
     },
     {
       "name": "Veronica \"Blue Regiment\"",
+      "family":"",
       "plantings": [
         {
           "source": "Woodbridge",
@@ -2962,6 +3197,7 @@
     },
     {
       "name": "Veronica \"Ronica\"",
+      "family":"",
       "plantings": [
         {
           "source": "Bunnings",
@@ -2974,6 +3210,7 @@
     },
     {
       "name": "Veronica gentianoides",
+      "family":"",
       "plantings": [
         {
           "source": "Woodbridge",
@@ -2986,6 +3223,7 @@
     },
     {
       "name": "Veronica ornata \"Ornate Silver\"",
+      "family":"",
       "plantings": [
         {
           "source": "Bull Botanics Bairnsdale",
@@ -2998,6 +3236,7 @@
     },
     {
       "name": "Veronica peduncularis \"Oxford Blue\"",
+      "family":"",
       "plantings": [
         {
           "source": "Bonnyrigg Garden Centre Sydney",
@@ -3010,6 +3249,7 @@
     },
     {
       "name": "Veronica spicata",
+      "family":"",
       "plantings": [
         {
           "source": "Woodbridge",
@@ -3022,6 +3262,7 @@
     },
     {
       "name": "Veronicastrum virginicum",
+      "family":"",
       "plantings": [
         {
           "source": "Woodbridge",
@@ -3034,6 +3275,7 @@
     },
     {
       "name": "Veronicastrum virginicum \"Lavendelturm\"",
+      "family":"",
       "plantings": [
         {
           "source": "Dickson Nursery",
@@ -3046,6 +3288,7 @@
     },
     {
       "name": "Viburnum davidii",
+      "family":"",
       "plantings": [
         {
           "source": "Woodbridge",
@@ -3058,6 +3301,7 @@
     },
     {
       "name": "Viola \"Baby Blue\"",
+      "family":"",
       "plantings": [
         {
           "source": "Murphy's Orbost",
@@ -3070,6 +3314,7 @@
     },
     {
       "name": "Zenobia pulverulenta",
+      "family":"",
       "plantings": [
         {
           "source": "",
@@ -3082,6 +3327,7 @@
     },
     {
       "name": "Zephyranthes citrina",
+      "family":"",
       "plantings": [
         {
           "source": "Balberra Gardens",
@@ -3094,6 +3340,7 @@
     },
     {
       "name": "Zephyranthes primulina",
+      "family":"",
       "plantings": [
         {
           "source": "Lynwood Garden",
