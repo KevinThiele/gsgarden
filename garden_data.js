@@ -1,5 +1,5 @@
 {
-  "lastModified": 1791346031987,
+  "lastModified": 1791351014871,
   "data": [
     {
       "name": "Achillea \"Moonshine\"",
@@ -2109,7 +2109,17 @@
       ]
     },
     {
-      "name": "Myosotis \"Compindie\"",
+      "name": "Myosotis sylvatica",
+      "plantings": [
+        {
+          "source": "Original",
+          "date_planted": ""
+        }
+      ],
+      "family": "Boraginaceae"
+    },
+    {
+      "name": "Myosotis sylvatica \"Compindi\"",
       "family": "Boraginaceae",
       "plantings": [
         {
@@ -2119,7 +2129,7 @@
       ]
     },
     {
-      "name": "Myosotis \"Snowsilva\"",
+      "name": "Myosotis sylvatica \"Snowsilva\"",
       "family": "Boraginaceae",
       "plantings": [
         {
