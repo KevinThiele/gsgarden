@@ -1,5 +1,5 @@
 {
-  "lastModified": 1791170241606,
+  "lastModified": 1791346031987,
   "data": [
     {
       "name": "Achillea \"Moonshine\"",
@@ -133,12 +133,12 @@
       ]
     },
     {
-      "name": "Allium",
+      "name": "Allium ‘Purple Rain’",
       "family": "Alliaceae",
       "plantings": [
         {
-          "source": "",
-          "date_planted": "",
+          "source": "Woodbridge",
+          "date_planted": "April 23",
           "baseline": 1,
           "x": 540,
           "y": 415
@@ -2005,6 +2005,32 @@
       ]
     },
     {
+      "name": "Magnolia figo",
+      "family": "Magnoliaceae",
+      "plantings": [
+        {
+          "source": "Original",
+          "date_planted": "",
+          "baseline": 3,
+          "x": 360,
+          "y": 40
+        }
+      ]
+    },
+    {
+      "name": "Magnolia laevigata",
+      "family": "Magnoliaceae",
+      "plantings": [
+        {
+          "source": "Dickson Nursery",
+          "date_planted": "",
+          "baseline": 2,
+          "x": 1820,
+          "y": 550
+        }
+      ]
+    },
+    {
       "name": "Magnolia stellata",
       "family": "Magnoliaceae",
       "plantings": [
@@ -2053,32 +2079,6 @@
           "baseline": 7,
           "x": 990,
           "y": 190
-        }
-      ]
-    },
-    {
-      "name": "Magnolia figo",
-      "family": "Magnoliaceae",
-      "plantings": [
-        {
-          "source": "Original",
-          "date_planted": "",
-          "baseline": 3,
-          "x": 360,
-          "y": 40
-        }
-      ]
-    },
-    {
-      "name": "Magnolia laevigata",
-      "family": "Magnoliaceae",
-      "plantings": [
-        {
-          "source": "Dickson Nursery",
-          "date_planted": "",
-          "baseline": 2,
-          "x": 1820,
-          "y": 550
         }
       ]
     },
