@@ -1,5 +1,5 @@
 {
-  "lastModified": 1793953046718,
+  "lastModified": 1794007922544,
   "data": [
     {
       "name": "Achillea \"Moonshine\"",
@@ -73,7 +73,8 @@
           "source": "Bull Botanics",
           "date_planted": "Nov 2026"
         }
-      ]
+      ],
+      "family": "Lamiaceae"
     },
     {
       "name": "Agastache x hybrida \"Arizona Sun\"",
@@ -324,7 +325,8 @@
           "source": "Bunnings Bairnsdale",
           "date_planted": "Nov 2026"
         }
-      ]
+      ],
+      "family": "Ranunculaceae"
     },
     {
       "name": "Aquilegia oxysepala",
@@ -1231,7 +1233,8 @@
           "source": "Bull Botanics",
           "date_planted": "Nov 2026"
         }
-      ]
+      ],
+      "family": "Thymelaeaceae"
     },
     {
       "name": "Edgeworthia papyrifera",
@@ -2323,7 +2326,8 @@
           "source": "Bunnings Bairnsdale",
           "date_planted": "Nov 2026"
         }
-      ]
+      ],
+      "family": "Paeoniaceae"
     },
     {
       "name": "Paeonia suffruticosa",
@@ -2612,7 +2616,8 @@
           "source": "Bull Botanics",
           "date_planted": "Nov 2026"
         }
-      ]
+      ],
+      "family": "Lamiaceae"
     },
     {
       "name": "Prunella grandiflora ‘Pink Loveliness’",
@@ -2621,7 +2626,8 @@
           "source": "Bunnings Bairnsdale",
           "date_planted": "Nov 2026"
         }
-      ]
+      ],
+      "family": "Lamiaceae"
     },
     {
       "name": "Pulsatilla vulgaris",
@@ -3045,7 +3051,8 @@
           "source": "Bull Botanics",
           "date_planted": "Nov 2026"
         }
-      ]
+      ],
+      "family": "Caryophyllaceae"
     },
     {
       "name": "Sisyrhynchium idahoensis var. macounii",
