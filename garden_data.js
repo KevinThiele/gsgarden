@@ -1,5 +1,5 @@
 {
-  "lastModified": 1793952951409,
+  "lastModified": 1793953046718,
   "data": [
     {
       "name": "Achillea \"Moonshine\"",
@@ -1221,6 +1221,15 @@
           "baseline": 3,
           "x": 3280,
           "y": 20
+        }
+      ]
+    },
+    {
+      "name": "Edgeworthia chrysantha ‘Grandiflora’",
+      "plantings": [
+        {
+          "source": "Bull Botanics",
+          "date_planted": "Nov 2026"
         }
       ]
     },
