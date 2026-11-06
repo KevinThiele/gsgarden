@@ -1,5 +1,5 @@
 {
-  "lastModified": 1791351014871,
+  "lastModified": 1793952951409,
   "data": [
     {
       "name": "Achillea \"Moonshine\"",
@@ -63,6 +63,15 @@
           "baseline": 2,
           "x": 1735,
           "y": 850
+        }
+      ]
+    },
+    {
+      "name": "Agastache ‘Blue Boa’",
+      "plantings": [
+        {
+          "source": "Bull Botanics",
+          "date_planted": "Nov 2026"
         }
       ]
     },
@@ -305,6 +314,15 @@
           "baseline": 5,
           "x": 400,
           "y": 20
+        }
+      ]
+    },
+    {
+      "name": "Aquilegia caerulea (yellow)",
+      "plantings": [
+        {
+          "source": "Bunnings Bairnsdale",
+          "date_planted": "Nov 2026"
         }
       ]
     },
@@ -1699,6 +1717,17 @@
       ]
     },
     {
+      "name": "Hydrangea ‘Runaway Bride’",
+      "plantings": [
+        {
+          "source": "Bull Botanics",
+          "date_planted": "Nov 2026",
+          "baseline": 0
+        }
+      ],
+      "family": "Hydrangeaceae"
+    },
+    {
       "name": "Hydrangea longifolia",
       "family": "Hydrangeaceae",
       "plantings": [
@@ -2279,6 +2308,15 @@
       ]
     },
     {
+      "name": "Paeonia Itoh ‘Cora Louise’",
+      "plantings": [
+        {
+          "source": "Bunnings Bairnsdale",
+          "date_planted": "Nov 2026"
+        }
+      ]
+    },
+    {
       "name": "Paeonia suffruticosa",
       "family": "Paeoniaceae",
       "plantings": [
@@ -2555,6 +2593,24 @@
           "baseline": 7,
           "x": 1155,
           "y": 165
+        }
+      ]
+    },
+    {
+      "name": "Prunella grandiflora ‘Bella Lilac’",
+      "plantings": [
+        {
+          "source": "Bull Botanics",
+          "date_planted": "Nov 2026"
+        }
+      ]
+    },
+    {
+      "name": "Prunella grandiflora ‘Pink Loveliness’",
+      "plantings": [
+        {
+          "source": "Bunnings Bairnsdale",
+          "date_planted": "Nov 2026"
         }
       ]
     },
@@ -2970,6 +3026,15 @@
           "baseline": 4,
           "x": 1310,
           "y": 100
+        }
+      ]
+    },
+    {
+      "name": "Silene’ uniflora White Bells’",
+      "plantings": [
+        {
+          "source": "Bull Botanics",
+          "date_planted": "Nov 2026"
         }
       ]
     },
