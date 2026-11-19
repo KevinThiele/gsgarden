@@ -1,5 +1,5 @@
 {
-  "lastModified": 1794007922544,
+  "lastModified": 1795080478929,
   "data": [
     {
       "name": "Achillea \"Moonshine\"",
@@ -433,6 +433,16 @@
       ]
     },
     {
+      "name": "Astrantia ‘Woodbridge White’",
+      "plantings": [
+        {
+          "source": "Woodbridge",
+          "date_planted": "Nov 2026"
+        }
+      ],
+      "family": "Apiaceae"
+    },
+    {
       "name": "Astrantia \"Wol\"s Best Red\"",
       "family": "Apiaceae",
       "plantings": [
@@ -457,6 +467,16 @@
           "y": 130
         }
       ]
+    },
+    {
+      "name": "Bergenia ’Bressingham White’",
+      "plantings": [
+        {
+          "source": "Woodbridge",
+          "date_planted": "Nov 2026"
+        }
+      ],
+      "family": "Saxifragaceae"
     },
     {
       "name": "Bergenia cordifolia",
@@ -1825,6 +1845,16 @@
       ]
     },
     {
+      "name": "Iris lazica",
+      "plantings": [
+        {
+          "source": "Woodbridge",
+          "date_planted": "Nov 2026"
+        }
+      ],
+      "family": "Iridacaceae"
+    },
+    {
       "name": "Lathyrus latifolius",
       "family": "Fabaceae",
       "plantings": [
@@ -3191,6 +3221,16 @@
           "y": 10
         }
       ]
+    },
+    {
+      "name": "Thymus minimus",
+      "plantings": [
+        {
+          "source": "Woodbridge",
+          "date_planted": "Nov 2026"
+        }
+      ],
+      "family": "Lamiaceae"
     },
     {
       "name": "Tolmiea menziesii",
