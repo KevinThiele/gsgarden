@@ -1,5 +1,5 @@
 {
-  "lastModified": 1795080478929,
+  "lastModified": 1795246850648,
   "data": [
     {
       "name": "Achillea \"Moonshine\"",
@@ -2464,7 +2464,7 @@
       ]
     },
     {
-      "name": "Philadelphus",
+      "name": "Philadelphus mexicanus",
       "family": "Hydrangeaceae",
       "plantings": [
         {
