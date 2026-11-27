@@ -1,5 +1,5 @@
 {
-  "lastModified": 1795246850648,
+  "lastModified": 1795758914610,
   "data": [
     {
       "name": "Achillea \"Moonshine\"",
@@ -1219,6 +1219,16 @@
           "y": 30
         }
       ]
+    },
+    {
+      "name": "Echinacea tennesseensis",
+      "plantings": [
+        {
+          "source": "Woodside Plants",
+          "date_planted": "Aug 2026"
+        }
+      ],
+      "family": "Asteraceae"
     },
     {
       "name": "Echinops ritro \"Vietch's Blue\"",
